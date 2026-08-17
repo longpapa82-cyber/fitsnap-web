@@ -42,7 +42,7 @@ export function Hero() {
               beforeAlt="옷을 입기 전 사용자 사진"
               afterAlt="AI 가상 착용 결과"
             />
-            <p className="hero-hint">← 드래그해서 변신을 확인하세요 →</p>
+            <p className="hero-hint">옷만 바뀌는 변신을 확인하세요</p>
           </div>
         </Reveal>
       </div>
