@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { asset } from '../../lib/asset';
 import './before-after.css';
 
 interface BeforeAfterProps {
@@ -97,12 +98,12 @@ export function BeforeAfter({
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
-      {/* after: 전체 배경. width/height 명시로 CLS(레이아웃 시프트) 방어. */}
-      <img className="ba-img" src={afterSrc} alt={afterAlt} width={width} height={height} draggable={false} />
+      {/* after: 전체 배경. width/height 명시로 CLS(레이아웃 시프트) 방어. asset()로 base 접두. */}
+      <img className="ba-img" src={asset(afterSrc)} alt={afterAlt} width={width} height={height} draggable={false} />
       {/* before: 위에 얹고 오른쪽을 클립(손잡이 오른쪽은 after가 보임) */}
       <img
         className={`ba-img ba-before${dragging ? '' : ' ba-anim'}`}
-        src={beforeSrc}
+        src={asset(beforeSrc)}
         alt={beforeAlt}
         width={width}
         height={height}
