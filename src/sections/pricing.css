@@ -1,0 +1,60 @@
+.pricing-note {
+  text-align: center;
+  color: var(--color-on-surface-variant);
+  max-width: 40ch;
+  margin: 0 auto 2.5rem;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.price-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+}
+.price-card--lead { border-color: var(--color-coral); }
+.price-badge {
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-coral);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.9rem;
+  border-radius: var(--radius-full);
+}
+.price-title { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.price-amount { display: flex; align-items: baseline; gap: 0.25rem; margin-bottom: 0.5rem; }
+.price-amount strong { font-size: 2rem; color: var(--color-coral); font-family: var(--font-display); }
+.price-amount span { color: var(--color-on-surface-variant); }
+.price-trial { color: var(--color-coral); font-weight: 700; font-size: 0.9rem; margin: 0 0 0.25rem; }
+.price-anchor { color: var(--color-on-surface-variant); font-style: italic; font-size: 0.9rem; margin: 0 0 0.5rem; }
+.price-perks { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.price-perks li { padding-left: 1.5rem; position: relative; font-size: 0.95rem; }
+.price-perks li::before { content: '✓'; position: absolute; left: 0; color: var(--color-coral); font-weight: 800; }
+
+.pack-row { margin-top: 2.5rem; text-align: center; }
+.pack-label { display: block; color: var(--color-on-surface-variant); margin-bottom: 1rem; font-size: 0.95rem; }
+.pack-chips { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+.pack-chip {
+  background: var(--color-coral-tint);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+.pack-chip strong { color: var(--color-on-surface); }
+.pack-chip span { color: var(--color-coral); font-weight: 700; }
+
+@media (max-width: 820px) { .price-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }

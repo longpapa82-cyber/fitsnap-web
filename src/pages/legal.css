@@ -1,0 +1,32 @@
+.legal { min-height: 100vh; background: var(--color-background); }
+
+.legal-header {
+  border-bottom: 1px solid var(--color-coral-tint);
+  padding: 1rem var(--space-gutter);
+}
+.legal-home { font-family: var(--font-display); font-weight: 800; color: var(--color-on-surface); }
+.legal-home:hover { color: var(--color-coral); }
+
+.legal-main { max-width: 760px; margin: 0 auto; padding: 2rem var(--space-gutter) 5rem; }
+
+.legal-crumb { font-size: 0.9rem; color: var(--color-on-surface-variant); margin-bottom: 1.5rem; }
+.legal-crumb a:hover { color: var(--color-coral); }
+
+.legal-title { font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem); margin: 0 0 2rem; }
+
+.legal-article h2 { font-size: 1.3rem; margin: 2.5rem 0 0.75rem; }
+.legal-article h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+.legal-article p { color: var(--color-on-surface); line-height: 1.8; margin: 0 0 1rem; }
+.legal-article ul { padding-left: 1.25rem; margin: 0 0 1.25rem; }
+.legal-article li { line-height: 1.8; margin-bottom: 0.4rem; }
+.legal-article strong { color: var(--color-on-surface); }
+.legal-article a { color: var(--color-coral); text-decoration: underline; }
+
+/* 수집항목 표 */
+.legal-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+.legal-table th, .legal-table td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--color-coral-tint); }
+.legal-table th { background: var(--color-coral-tint); font-weight: 700; }
+
+.legal-meta { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-coral-tint); color: var(--color-on-surface-variant); font-size: 0.9rem; }
+.legal-meta p { margin: 0.25rem 0; color: var(--color-on-surface-variant); }
+.legal-draft { color: var(--color-coral) !important; font-weight: 600; margin-top: 1rem !important; }

@@ -1,0 +1,76 @@
+.ba-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  cursor: ew-resize;
+  touch-action: none; /* 드래그 시 스크롤 방지 */
+  background: var(--color-coral-tint);
+  user-select: none;
+}
+.ba-stage:focus-visible {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 3px;
+}
+
+.ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* clip/이동에 부드러운 전환. 드래그 중(ba-anim 없음)엔 즉시 반응. */
+.ba-before.ba-anim { transition: clip-path var(--duration) var(--ease-out-expo); }
+.ba-handle.ba-anim { transition: left var(--duration) var(--ease-out-expo); }
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+.ba-handle-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--color-coral);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  box-shadow: var(--shadow-soft);
+}
+
+.ba-label {
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  pointer-events: none;
+}
+.ba-label--before { left: 1rem; }
+.ba-label--after { right: 1rem; background: var(--color-coral); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-before.ba-anim, .ba-handle.ba-anim { transition: none; }
+}

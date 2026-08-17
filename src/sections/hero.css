@@ -1,0 +1,57 @@
+.hero {
+  padding: calc(var(--space-section) * 0.7) var(--space-gutter) var(--space-section);
+  /* 부드러운 크림→옅은코랄 분위기 배경 */
+  background: radial-gradient(120% 90% at 85% 10%, var(--color-coral-tint), var(--color-background) 55%);
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: center;
+}
+
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+
+.hero-eyebrow {
+  background: var(--color-coral-tint);
+  color: var(--color-coral);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-title {
+  font-size: var(--text-hero);
+  margin: 0;
+}
+.hero-accent { color: var(--color-coral); }
+
+.hero-sub {
+  color: var(--color-on-surface-variant);
+  font-size: 1.1rem;
+  max-width: 30ch;
+  margin: 0;
+}
+
+.hero-cta { margin-top: 0.5rem; }
+
+.hero-visual { display: flex; flex-direction: column; gap: 0.75rem; }
+.hero-hint {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+/* 모바일: 1열로. 슬라이더가 카피 아래로. */
+@media (max-width: 820px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-copy { align-items: center; text-align: center; }
+  .hero-sub { max-width: 34ch; }
+  .hero-visual { max-width: 420px; margin: 0 auto; width: 100%; }
+}

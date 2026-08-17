@@ -1,0 +1,53 @@
+/* 블로그 정적 페이지 스타일. tokens.css 변수 사용(빌드 시 dist/tokens.css 복사됨). */
+/* 폴백: tokens.css 미로드 시에도 최소 표시 */
+:root { --color-background: #FBF9F6; --color-coral: #FF6B4A; --color-on-surface: #2A2724; --color-on-surface-variant: #7A736C; --color-coral-tint: #FFEDE7; --color-surface: #fff; --radius: 16px; --radius-lg: 28px; --shadow-soft: 0 8px 30px rgba(42,39,36,0.08); }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: 'Plus Jakarta Sans', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+
+.blog-header { border-bottom: 1px solid var(--color-coral-tint); padding: 1rem 1.5rem; }
+.blog-home { font-weight: 800; }
+.blog-home:hover { color: var(--color-coral); }
+
+.blog-main { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.blog-crumb { font-size: 0.9rem; color: var(--color-on-surface-variant); margin-bottom: 1.5rem; }
+.blog-crumb a:hover { color: var(--color-coral); }
+
+.blog-eyebrow { display: inline-block; color: var(--color-coral); font-weight: 800; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.blog-title { font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 0.5rem; }
+.blog-lead { color: var(--color-on-surface-variant); margin: 0 0 2rem; }
+.blog-date { color: var(--color-on-surface-variant); font-size: 0.9rem; margin: 0 0 2rem; }
+
+/* 아티클 본문 */
+.blog-article h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
+.blog-article h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+.blog-article p { margin: 0 0 1.25rem; }
+.blog-article ul, .blog-article ol { padding-left: 1.4rem; margin: 0 0 1.25rem; }
+.blog-article li { margin-bottom: 0.4rem; }
+.blog-article img { border-radius: var(--radius); margin: 1.5rem 0; }
+.blog-article a { color: var(--color-coral); text-decoration: underline; }
+.blog-article table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+.blog-article th, .blog-article td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--color-coral-tint); }
+.blog-article th { background: var(--color-coral-tint); }
+/* admonition (:::tip 등) */
+.admonition { border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1.5rem 0; background: var(--color-coral-tint); }
+.admonition.warning { background: #FFF4E5; }
+
+/* 인덱스 카드 그리드 */
+.blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.blog-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-soft); transition: transform 200ms ease; }
+.blog-card:hover { transform: translateY(-4px); }
+.blog-card-title { font-size: 1.15rem; margin: 0 0 0.5rem; }
+.blog-card-desc { color: var(--color-on-surface-variant); font-size: 0.95rem; margin: 0 0 1rem; }
+.blog-card-date { color: var(--color-on-surface-variant); font-size: 0.85rem; }
+@media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.blog-footer { border-top: 1px solid var(--color-coral-tint); padding: 2rem 1.5rem; text-align: center; color: var(--color-on-surface-variant); font-size: 0.9rem; }
+.blog-footer a:hover { color: var(--color-coral); }

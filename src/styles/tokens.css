@@ -1,0 +1,39 @@
+/**
+ * 디자인 토큰 — FitSnap 앱 tokens.ts 에서 이식(앱-웹 시각 일관성).
+ * "Bright & Breezy" 라이트 쇼핑 테마: cream 배경 + coral 강조 + Plus Jakarta Sans.
+ */
+:root {
+  /* 색상 */
+  --color-background: #FBF9F6;   /* 최상위 배경 = 크림 */
+  --color-surface: #FFFFFF;      /* 카드 = 순백 */
+  --color-on-surface: #2A2724;   /* 본문/제목 */
+  --color-on-surface-variant: #7A736C; /* 보조 텍스트 */
+  --color-coral: #FF6B4A;        /* 메인 강조 */
+  --color-coral-soft: #FF9478;
+  --color-coral-tint: #FFEDE7;   /* 옅은 코랄 배경(칩/뱃지) */
+
+  /* 타이포 (Plus Jakarta Sans + 시스템 폴백) */
+  --font-body: 'Plus Jakarta Sans', -apple-system, 'Apple SD Gothic Neo',
+    'Malgun Gothic', system-ui, sans-serif;
+  --font-display: var(--font-body);
+
+  /* 반응형 크기(clamp) */
+  --text-hero: clamp(2.25rem, 1.5rem + 3.5vw, 3.5rem);
+  --text-headline: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+
+  /* 간격 */
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --space-gutter: clamp(1.25rem, 1rem + 2vw, 2rem);
+
+  /* 반경·그림자 */
+  --radius: 16px;
+  --radius-lg: 28px;
+  --radius-full: 9999px;
+  --shadow-soft: 0 8px 30px rgba(42, 39, 36, 0.08);
+  --shadow-coral: 0 8px 24px rgba(255, 107, 74, 0.25);
+
+  /* 모션 */
+  --duration: 500ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}

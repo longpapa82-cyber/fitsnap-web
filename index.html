@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      CSP — GitHub Pages는 서버 헤더가 없어 meta http-equiv로 적용.
+      애널리틱스(GA/네이버)·Google Fonts를 화이트리스트. W1에서 SRI 대신 약속한 방어책.
+      ⚠️ 커스텀 도메인·실제 애널리틱스 도입 후 origin 재점검 필요.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://wcs.naver.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://wcs.naver.net; base-uri 'self'; object-src 'none'"
+    />
+    <title>FitSnap — 사기 전에 입어보세요 | AI 가상 착용</title>
+    <meta name="description" content="AI 가상 착용으로 옷을 실제로 입어보지 않고도 입은 모습을 확인하세요. 내 사진과 옷 사진만으로 가상 피팅." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://fitsnap.app/" />
+    <meta name="keywords" content="가상착용, AI 옷입기, 버추얼 피팅, virtual try-on, FitSnap, 온라인 쇼핑" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FitSnap" />
+    <meta property="og:title" content="FitSnap — 사기 전에 입어보세요" />
+    <meta property="og:description" content="AI 가상 착용으로 옷을 입은 모습을 미리 확인하세요." />
+    <meta property="og:url" content="https://fitsnap.app/" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image" content="https://fitsnap.app/assets/og-banner.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FitSnap — 사기 전에 입어보세요" />
+    <meta name="twitter:description" content="AI 가상 착용으로 옷을 입은 모습을 미리 확인하세요." />
+    <meta name="twitter:image" content="https://fitsnap.app/assets/og-banner.jpg" />
+
+    <!-- 검색엔진 인증 (TODO: 실제 코드로 교체) -->
+    <!-- <meta name="google-site-verification" content="..." /> -->
+    <!-- <meta name="naver-site-verification" content="..." /> -->
+
+    <!-- 폰트: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- LCP 후보: 히어로 after 이미지 preload -->
+    <link rel="preload" as="image" href="/assets/demo/hero-after.webp" fetchpriority="high" />
+
+    <!-- 구조화 데이터: WebSite + Organization + MobileApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "FitSnap",
+            "url": "https://fitsnap.app/",
+            "inLanguage": "ko-KR"
+          },
+          {
+            "@type": "Organization",
+            "name": "FitSnap",
+            "url": "https://fitsnap.app/",
+            "logo": "https://fitsnap.app/assets/og-banner.jpg"
+          },
+          {
+            "@type": "MobileApplication",
+            "name": "FitSnap",
+            "operatingSystem": "iOS, Android",
+            "applicationCategory": "ShoppingApplication",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>FitSnap — AI 가상 착용 앱. 자바스크립트를 켜면 전체 사이트를 볼 수 있습니다.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

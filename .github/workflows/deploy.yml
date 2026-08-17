@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+# main push 시 빌드 → GitHub Pages 배포 (독립 저장소, 루트 기준).
+# GitHub Pages 기본 URL(user.github.io/<repo>/) 기준 BASE_PATH·SITE_ORIGIN 자동 설정.
+# 커스텀 도메인 사용 시: BASE_PATH='/', SITE_ORIGIN=도메인, public/CNAME 추가.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build
+        # 보안: repo name·owner는 GitHub 관리 불변값이며 env로 주입 → 셸 injection 없음.
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+          SITE_ORIGIN: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
