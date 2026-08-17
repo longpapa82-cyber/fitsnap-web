@@ -1,4 +1,5 @@
 import { useHashRoute } from './hooks/useHashRoute';
+import { Nav } from './components/ui/Nav';
 import { Hero } from './sections/Hero';
 import { HowItWorks } from './sections/HowItWorks';
 import { Demo } from './sections/Demo';
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <>
       <a className="skip-link" href="#main">본문 바로가기</a>
+      <Nav />
       <main id="main">
         <Hero />
         <HowItWorks />

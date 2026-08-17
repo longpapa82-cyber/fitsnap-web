@@ -1,0 +1,62 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;
+  transition: background var(--duration) var(--ease-out-expo), box-shadow var(--duration) var(--ease-out-expo);
+}
+/* 스크롤 시 반투명 크림 배경 + 블러로 가독성 확보 */
+.nav--scrolled {
+  background: rgba(251, 249, 246, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  box-shadow: 0 1px 0 var(--color-coral-tint);
+}
+
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.9rem var(--space-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-on-surface);
+  letter-spacing: -0.02em;
+}
+.nav-brand:hover { color: var(--color-coral); }
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+}
+.nav-links a {
+  color: var(--color-on-surface-variant);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 150ms var(--ease-out-expo);
+}
+.nav-links a:hover { color: var(--color-coral); }
+
+.nav-cta {
+  background: var(--color-coral);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-coral);
+  transition: transform 150ms var(--ease-out-expo);
+}
+.nav-cta:hover { transform: translateY(-1px); }
+
+/* 모바일: 앵커 링크 숨김(브랜드 + CTA만). 스크롤 앵커는 섹션 내부 CTA로 커버. */
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+}
