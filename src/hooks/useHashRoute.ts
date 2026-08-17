@@ -17,12 +17,21 @@ export function useHashRoute(): Route {
   const [route, setRoute] = useState<Route>('');
 
   useEffect(() => {
+    let prev = normalize(window.location.hash);
+    setRoute(prev);
+
     const apply = () => {
-      setRoute(normalize(window.location.hash));
-      // 라우트 전환 시 상단으로.
-      window.scrollTo(0, 0);
+      const next = normalize(window.location.hash);
+      // ⚠️ 섹션 앵커(#how·#pricing 등)는 normalize에서 ''로 떨어진다.
+      //    이때 scrollTo(0,0)을 하면 브라우저의 앵커 점프를 즉시 되돌려
+      //    "두 번 눌러야 이동" 버그가 생긴다. → 라우트가 실제로 바뀔 때만 top으로.
+      if (next !== prev) {
+        setRoute(next);
+        prev = next;
+        // 법리 페이지로 "진입"할 때만 상단 정렬(섹션 앵커는 브라우저 기본 스크롤에 맡김).
+        if (next !== '') window.scrollTo(0, 0);
+      }
     };
-    apply();
     window.addEventListener('hashchange', apply);
     return () => window.removeEventListener('hashchange', apply);
   }, []);

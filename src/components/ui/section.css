@@ -1,5 +1,7 @@
 .section {
   padding: var(--space-section) var(--space-gutter);
+  /* sticky GNB(약 64px)가 앵커 이동 시 섹션 제목을 가리지 않도록 여백 보정. */
+  scroll-margin-top: 72px;
 }
 .section--default { background: var(--color-background); }
 .section--tint { background: linear-gradient(180deg, var(--color-coral-tint), var(--color-background)); }
