@@ -16,13 +16,15 @@ body {
   font-size: var(--text-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* 전역 피팅룸 분위기: 뚜렷한 다지점 그라디언트 메시 */
+  /* 전역 피팅룸 분위기: 뚜렷한 다지점 그라디언트 메시(6포인트로 강화) */
   background:
-    radial-gradient(50% 40% at 88% 2%, rgba(255, 107, 74, 0.22), transparent 58%),
-    radial-gradient(45% 38% at 6% 28%, rgba(255, 148, 120, 0.18), transparent 60%),
-    radial-gradient(50% 42% at 94% 58%, rgba(212, 175, 55, 0.16), transparent 58%),
-    radial-gradient(48% 40% at 12% 86%, rgba(255, 107, 74, 0.16), transparent 60%),
-    linear-gradient(165deg, #FFF0E9 0%, #FDF3EC 42%, #FBF6F0 100%);
+    radial-gradient(52% 42% at 88% 2%, rgba(255, 107, 74, 0.26), transparent 58%),
+    radial-gradient(46% 40% at 6% 24%, rgba(255, 148, 120, 0.22), transparent 60%),
+    radial-gradient(40% 34% at 50% 44%, rgba(255, 178, 150, 0.12), transparent 62%),
+    radial-gradient(52% 44% at 94% 58%, rgba(212, 175, 55, 0.18), transparent 58%),
+    radial-gradient(48% 42% at 10% 82%, rgba(255, 107, 74, 0.20), transparent 60%),
+    radial-gradient(44% 38% at 90% 96%, rgba(255, 148, 120, 0.16), transparent 60%),
+    linear-gradient(165deg, #FFEFE7 0%, #FDF2EB 42%, #FBF6F0 100%);
   background-attachment: fixed;
 }
 /* 전역 grain — fixed 텍스처(균일해서 스크롤 고정돼도 자연스러움). */

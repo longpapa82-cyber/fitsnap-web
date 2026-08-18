@@ -49,7 +49,7 @@
 .ap {
   position: absolute;
   color: var(--color-coral);
-  opacity: 0.15;
+  opacity: 0.2;
   will-change: transform;
   animation: apFloat 18s ease-in-out infinite;
 }

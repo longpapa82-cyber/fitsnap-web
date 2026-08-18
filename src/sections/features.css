@@ -35,26 +35,71 @@
   box-shadow: 0 18px 40px rgba(255, 107, 74, 0.18), var(--shadow-soft);
 }
 
-.feat-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+/* 아이콘 배지: 옅은 코랄 사각 안에 코랄 라인 아이콘 */
+.feat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius);
+  background: var(--color-coral-tint);
+  color: var(--color-coral);
+  margin-bottom: 0.85rem;
+}
 .feat-title { font-size: 1.15rem; margin: 0 0 0.4rem; }
 .feat-desc { color: var(--color-on-surface-variant); font-size: 0.95rem; margin: 0; max-width: 34ch; }
 
 /* 대표 타일 확대 톤 */
 .feat-card--big {
   background: linear-gradient(155deg, #fff, var(--color-coral-tint));
+}
+.feat-card--big .feat-icon { width: 54px; height: 54px; }
+.feat-card--big .feat-title { font-size: 1.65rem; }
+.feat-card--big .feat-desc { font-size: 1.02rem; max-width: none; }
+
+/* 대표 타일 내부: 좌 카피 + 우 미리보기 가로 배치(빈 공간 제거) */
+.feat-big-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 42%);
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  align-items: center;
+  height: 100%;
+}
+.feat-big-copy { display: flex; flex-direction: column; }
+.feat-big-points {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 0.6rem;
 }
-.feat-card--big .feat-icon { font-size: 2.4rem; }
-.feat-card--big .feat-title { font-size: 1.5rem; }
+.feat-big-points li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--color-on-surface-variant);
+  font-size: 0.95rem;
+}
+.feat-big-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--color-coral-tint)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF6B4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17.5 19 6.5'/%3E%3C/svg%3E")
+    center / 0.7rem no-repeat;
+}
 
-/* 대표 타일 미니 before/after 크로스페이드 미리보기 */
+/* 대표 타일 before/after 크로스페이드 미리보기 */
 .feat-preview {
-  margin-top: auto;
   border-radius: var(--radius);
   overflow: hidden;
-  max-width: 240px;
   box-shadow: var(--shadow-soft);
+  align-self: stretch;
 }
 
 /* 태블릿: big을 위, 나머지 2열 */
@@ -67,6 +112,11 @@
       'b c'
       'd d';
   }
+}
+/* 대표 타일 가로배치는 좁아지면 세로 스택 */
+@media (max-width: 680px) {
+  .feat-big-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .feat-preview { max-width: 320px; }
 }
 /* 모바일: 1열 스택 */
 @media (max-width: 520px) {

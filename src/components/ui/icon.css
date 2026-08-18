@@ -1,0 +1,13 @@
+/*
+  브랜드 아이콘 duotone — 옅은 코랄 면 + 코랄 라인.
+  currentColor로 라인 색을 상속(부모 color 지정 시 톤 통일). 면은 옅은 코랄 고정.
+*/
+.icon { display: block; }
+.icon .i-fill {
+  fill: var(--color-coral-tint);
+  stroke: none;
+}
+.icon .i-line {
+  fill: none;
+  stroke: currentColor;
+}
