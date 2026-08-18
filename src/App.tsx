@@ -1,5 +1,6 @@
 import { useHashRoute } from './hooks/useHashRoute';
 import { Nav } from './components/ui/Nav';
+import { BgApparel } from './components/ui/BgApparel';
 import { Hero } from './sections/Hero';
 import { HowItWorks } from './sections/HowItWorks';
 import { Demo } from './sections/Demo';
@@ -33,6 +34,8 @@ export default function App() {
         <span className="bg-blob bg-blob--2" />
         <span className="bg-blob bg-blob--3" />
       </div>
+      {/* 배경 의류 아이콘 — "옷장/피팅룸" 분위기. blob 위, 콘텐츠 뒤. */}
+      <BgApparel />
       <a className="skip-link" href="#main">본문 바로가기</a>
       <Nav />
       <main id="main">
