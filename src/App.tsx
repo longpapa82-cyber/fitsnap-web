@@ -1,5 +1,6 @@
 import { useHashRoute } from './hooks/useHashRoute';
 import { Nav } from './components/ui/Nav';
+import { BgApparel } from './components/ui/BgApparel';
 import { Hero } from './sections/Hero';
 import { HowItWorks } from './sections/HowItWorks';
 import { Demo } from './sections/Demo';
@@ -27,6 +28,8 @@ export default function App() {
 
   return (
     <>
+      {/* 문서 전체 배경 옷 레이어 — 가장자리 여백에만(콘텐츠와 안 겹침), 스크롤 시 함께 흐름 */}
+      <BgApparel />
       <a className="skip-link" href="#main">본문 바로가기</a>
       <Nav />
       <main id="main">

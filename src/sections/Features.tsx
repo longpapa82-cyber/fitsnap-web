@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Section } from '../components/ui/Section';
-import { asset } from '../lib/asset';
+import { BeforeAfter } from '../components/ui/BeforeAfter';
 import './features.css';
 
 interface Feat {
@@ -49,12 +49,15 @@ export function Features() {
             <span className="feat-icon" aria-hidden>{f.icon}</span>
             <h3 className="feat-title">{f.title}</h3>
             <p className="feat-desc">{f.desc}</p>
-            {/* 대표 타일: 미니 before/after 미리보기 */}
+            {/* 대표 타일: 미니 before/after 크로스페이드(정렬 불필요) */}
             {f.big && (
-              <div className="feat-preview" aria-hidden>
-                <img src={asset('/assets/demo/hero-before.webp')} alt="" loading="lazy" />
-                <img src={asset('/assets/demo/hero-after.webp')} alt="" loading="lazy" />
-                <span className="feat-preview-line" />
+              <div className="feat-preview">
+                <BeforeAfter
+                  beforeSrc="/assets/demo/hero-before.webp"
+                  afterSrc="/assets/demo/hero-after.webp"
+                  beforeAlt="원본"
+                  afterAlt="AI 착용"
+                />
               </div>
             )}
           </article>

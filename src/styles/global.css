@@ -10,6 +10,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  position: relative; /* 문서 전체 배경 옷 레이어(.bg-apparel absolute)의 컨테이닝 블록 */
   color: var(--color-on-surface);
   font-family: var(--font-body);
   font-size: var(--text-body);

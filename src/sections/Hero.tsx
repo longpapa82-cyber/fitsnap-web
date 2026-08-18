@@ -1,17 +1,8 @@
 import { BeforeAfter } from '../components/ui/BeforeAfter';
 import { StoreCTA } from '../components/ui/StoreCTA';
 import { Reveal } from '../components/ui/Reveal';
-import { BgApparel } from '../components/ui/BgApparel';
 import { SITE } from '../constants/site.shared.mjs';
 import './hero.css';
-
-/** 떠다니는 옷 태그 칩 — 피팅룸 분위기(가벼운 parallax float). */
-const FLOAT_TAGS = [
-  { label: '니트', cls: 'hero-tag--1' },
-  { label: '코트', cls: 'hero-tag--2' },
-  { label: '원피스', cls: 'hero-tag--3' },
-  { label: '자켓', cls: 'hero-tag--4' },
-];
 
 /**
  * Hero — "피팅룸 거울" 연출(D1). 좌: 카피+CTA / 우: 전신 거울(before/after 슬라이더).
@@ -21,16 +12,12 @@ const FLOAT_TAGS = [
 export function Hero() {
   return (
     <section id="hero" className="hero">
-      {/* 피팅룸 분위기: 광원 + blob + 옷 카드/칩 — 히어로에만 배치(스크롤 시 함께 흐름) */}
+      {/* 히어로 국소 광원·blob(거울과 안 겹치게 가장자리) */}
       <div className="hero-atmos" aria-hidden>
         <span className="hero-glow" />
         <span className="hero-blob hero-blob--1" />
         <span className="hero-blob hero-blob--2" />
-        {FLOAT_TAGS.map((t) => (
-          <span key={t.label} className={`hero-tag ${t.cls}`}>{t.label}</span>
-        ))}
       </div>
-      <BgApparel />
 
       <div className="hero-inner">
         <div className="hero-copy">
