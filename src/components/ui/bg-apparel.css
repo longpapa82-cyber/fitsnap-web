@@ -81,9 +81,24 @@
   50%      { transform: translateY(-18px) rotate(6deg); }
 }
 
-/* 콘텐츠가 가장자리에 가까워지는 화면: 아이콘 일부만(겹침 방지) */
+/* BG-3: 옷걸이 레일 — 좌우 가장자리 세로 구획에 옷장 은유. 아이콘보다 살짝 진하게. */
+.rail {
+  position: absolute;
+  width: clamp(100px, 9vw, 150px);
+  color: var(--color-coral);
+  opacity: 0.24;
+  --speed: 0.05;
+  transform: translateY(calc(var(--scroll, 0) * var(--speed) * -1px));
+  will-change: transform;
+}
+.rail-1 { top: 15%; left: 5%;  --speed: 0.06; }
+.rail-2 { top: 48%; right: 5%; --speed: 0.04; }
+.rail-3 { top: 80%; left: 5.5%;  --speed: 0.07; opacity: 0.2; }
+
+/* 콘텐츠가 가장자리에 가까워지는 화면: 아이콘·레일 일부만(겹침 방지) */
 @media (max-width: 1240px) {
   .ap-1, .ap-2, .ap-3, .ap-4, .ap-5, .ap-6, .ap-7, .ap-8 { display: none; }
+  .rail { display: none; }
 }
 @media (max-width: 1024px) {
   .fi-1, .fi-3, .fi-6, .fi-8, .fi-10, .fi-12 { display: none; } /* 좌측 숨김, 우측만 */
@@ -96,4 +111,5 @@
   .fi, .fi img, .ap { animation: none; }
   /* 패럴럭스도 정지(useParallax가 --scroll 미세팅하지만 이중 안전장치) */
   .fi { transform: rotate(var(--r, -6deg)); }
+  .rail { transform: none; }
 }

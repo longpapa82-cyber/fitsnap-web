@@ -36,6 +36,25 @@ const LINE_ICONS: { icon: keyof typeof ICONS; cls: string }[] = [
   { icon: 'dress', cls: 'ap-7' }, { icon: 'coat', cls: 'ap-8' },
 ];
 
+// BG-3: 옷걸이 레일 — 가로 봉에 옷걸이 여러 개가 걸린 선화(옷장 은유 강화).
+const RAILS = ['rail-1', 'rail-2', 'rail-3'];
+function Rail({ cls }: { cls: string }) {
+  return (
+    <svg className={`rail ${cls}`} viewBox="0 0 120 60" fill="none"
+      stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {/* 봉 */}
+      <line x1="4" y1="10" x2="116" y2="10" />
+      {/* 옷걸이 3개(고리+어깨) */}
+      {[24, 60, 96].map((x) => (
+        <g key={x}>
+          <path d={`M${x} 10 q0 -5 3 -5`} />
+          <path d={`M${x - 12} 26 L${x} 14 L${x + 12} 26`} />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export function BgApparel() {
   const rootRef = useRef<HTMLDivElement>(null);
   useParallax(rootRef);
@@ -52,6 +71,7 @@ export function BgApparel() {
           {ICONS[it.icon]}
         </svg>
       ))}
+      {RAILS.map((cls) => <Rail key={cls} cls={cls} />)}
     </div>
   );
 }

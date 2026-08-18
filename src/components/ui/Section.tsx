@@ -20,7 +20,13 @@ export function Section({ id, eyebrow, title, children, tone = 'default' }: Sect
       <div className="section-inner">
         {(eyebrow || title) && (
           <header className="section-head">
-            {eyebrow && <span className="section-eyebrow">{eyebrow}</span>}
+            {eyebrow && (
+              <span className="section-eyebrow">
+                <span className="section-eyebrow-line" aria-hidden />
+                {eyebrow}
+                <span className="section-eyebrow-line" aria-hidden />
+              </span>
+            )}
             {title && <h2 className="section-title">{title}</h2>}
           </header>
         )}

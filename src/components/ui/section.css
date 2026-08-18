@@ -5,28 +5,57 @@
 }
 /* default = 투명 → 전역 그라디언트 메시가 비침(통일감) */
 .section--default { background: transparent; }
-.section--tint { background: linear-gradient(180deg, rgba(255,237,231,0.7), transparent); }
+/* HQ-4: tint 섹션 = 부드러운 상하 페이드 디바이더 + 둥근 상단(경계 매끄럽게) */
+.section--tint {
+  position: relative;
+  background: linear-gradient(180deg, transparent, rgba(255, 237, 231, 0.85) 18%, rgba(255, 237, 231, 0.85) 82%, transparent);
+  border-radius: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem) 0 0;
+}
 .section--dark {
+  position: relative;
   background: radial-gradient(120% 120% at 50% 0%, var(--color-coral), #E8542F);
   color: #fff;
+  border-radius: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem) 0 0;
+}
+/* HQ-4: dark 섹션 상단에 은은한 광택 라인(전환 강조) */
+.section--dark::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: min(60%, 480px);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
 }
 
 .section-inner { max-width: 1200px; margin: 0 auto; }
 
 .section-head { text-align: center; margin-bottom: clamp(2.5rem, 1.5rem + 3.5vw, 4.5rem); }
 .section-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
   color: var(--color-coral);
   font-weight: 800;
   font-size: var(--text-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
+/* HQ-6: eyebrow 양옆 장식 라인(타이포 대비·리듬) */
+.section-eyebrow-line {
+  width: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--color-coral));
+}
+.section-eyebrow-line:last-child { background: linear-gradient(90deg, var(--color-coral), transparent); }
 .section--dark .section-eyebrow { color: rgba(255, 255, 255, 0.85); }
+.section--dark .section-eyebrow-line { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6)); }
+.section--dark .section-eyebrow-line:last-child { background: linear-gradient(90deg, rgba(255,255,255,0.6), transparent); }
 .section-title {
   font-size: var(--text-headline);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   margin: 0;
+  font-weight: 800;
 }
