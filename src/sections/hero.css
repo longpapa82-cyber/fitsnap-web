@@ -90,6 +90,9 @@
 .hero-title {
   font-size: var(--text-hero);
   margin: 0;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 800;
 }
 .hero-accent { position: relative; color: var(--color-coral); display: inline-block; }
 /* 강조어 밑줄이 그려지는 draw 애니메이션 */
@@ -111,12 +114,13 @@
 
 .hero-sub {
   color: var(--color-on-surface-variant);
-  font-size: 1.1rem;
-  max-width: 30ch;
-  margin: 0;
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.35rem);
+  line-height: 1.6;
+  max-width: 34ch;
+  margin: 0.4rem 0 0;
 }
 
-.hero-cta { margin-top: 0.5rem; }
+.hero-cta { margin-top: 1rem; }
 
 .hero-visual { display: flex; flex-direction: column; gap: 0.75rem; }
 
