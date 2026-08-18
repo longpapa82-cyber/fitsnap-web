@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { SITE, COMPANY, LEGAL } from '../constants/site.shared.mjs';
+import { COMPANY, LEGAL } from '../constants/site.shared.mjs';
+import { Nav } from '../components/ui/Nav';
 import './legal.css';
 
 interface LegalPageProps {
@@ -10,15 +11,14 @@ interface LegalPageProps {
 }
 
 /**
- * 법리 페이지 공용 레이아웃 — 헤더(브랜드+홈복귀) + 브레드크럼 + 본문 + 회사정보.
- * 개인정보/약관/계정삭제가 이 래퍼를 공유(일관 + DRY).
+ * 법리 페이지 공용 레이아웃 — 랜딩과 동일한 GNB(<Nav/>) + 브레드크럼 + 본문 + 회사정보.
+ * 개인정보/약관/계정삭제가 이 래퍼를 공유(일관 + DRY). GNB의 섹션 앵커(#how 등)는
+ * 해시 라우터가 홈으로 되돌리며 해당 섹션으로 스크롤하므로 법리 페이지에서도 정상 동작.
  */
 export function LegalPage({ title, children, showMeta = true }: LegalPageProps) {
   return (
     <div className="legal">
-      <header className="legal-header">
-        <a className="legal-home" href="#">← {SITE.name}</a>
-      </header>
+      <Nav />
       <main className="legal-main">
         <nav className="legal-crumb" aria-label="위치">
           <a href="#">홈</a> <span aria-hidden>/</span> <span aria-current="page">{title}</span>

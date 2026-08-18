@@ -1,13 +1,7 @@
 .legal { min-height: 100vh; background: var(--color-background); }
 
-.legal-header {
-  border-bottom: 1px solid var(--color-coral-tint);
-  padding: 1rem var(--space-gutter);
-}
-.legal-home { font-family: var(--font-display); font-weight: 800; color: var(--color-on-surface); }
-.legal-home:hover { color: var(--color-coral); }
-
-.legal-main { max-width: 760px; margin: 0 auto; padding: 2rem var(--space-gutter) 5rem; }
+/* GNB(<Nav/>)가 sticky라 레이아웃 공간을 차지 → 본문은 그 아래에서 시작. */
+.legal-main { max-width: 760px; margin: 0 auto; padding: 1.5rem var(--space-gutter) 5rem; }
 
 .legal-crumb { font-size: 0.9rem; color: var(--color-on-surface-variant); margin-bottom: 1.5rem; }
 .legal-crumb a:hover { color: var(--color-coral); }
