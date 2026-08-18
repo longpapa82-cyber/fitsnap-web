@@ -69,6 +69,24 @@ a { color: inherit; text-decoration: none; }
 
 img { max-width: 100%; height: auto; display: block; }
 
+/* HQ-5: 마이크로 인터랙션 통일 — 일관된 코랄 포커스 링(접근성) + 인터랙티브 요소 트랜지션 */
+a, button, summary, [role='tab'] {
+  outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role='tab']:focus-visible {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* 눌림 손맛: 인터랙티브 요소 액티브 시 살짝 축소 */
+button:active, a:active { transform: scale(0.98); }
+@media (prefers-reduced-motion: reduce) {
+  button:active, a:active { transform: none; }
+}
+
 /* 접근성: 스킵 링크 */
 .skip-link {
   position: absolute; left: -999px; top: 0;

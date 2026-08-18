@@ -1,26 +1,62 @@
-.faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.85rem; }
 .faq-item {
   background: var(--color-surface);
+  border: 1.5px solid transparent;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  transition: border-color 250ms var(--ease-out-expo), box-shadow 250ms var(--ease-out-expo);
 }
+.faq-item:hover { box-shadow: 0 12px 30px rgba(255, 107, 74, 0.10), var(--shadow-soft); }
+.faq-item[open] { border-color: var(--color-coral-tint); }
+
 .faq-q {
   cursor: pointer;
-  padding: 1.25rem 1.5rem;
+  padding: 1.35rem 1.5rem;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 .faq-q::-webkit-details-marker { display: none; }
-.faq-q::after { content: '+'; color: var(--color-coral); font-size: 1.4rem; font-weight: 400; }
-.faq-item[open] .faq-q::after { content: '−'; }
+/* +/− 대신 회전하는 아이콘(원 배지 안) */
+.faq-q::after {
+  content: '';
+  flex-shrink: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: var(--radius-full);
+  background: var(--color-coral-tint)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF6B4A' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")
+    center / 0.95rem no-repeat;
+  transition: transform 300ms var(--ease-out-expo), background-color 250ms;
+}
+.faq-item[open] .faq-q::after {
+  transform: rotate(135deg); /* + → × 느낌으로 회전 */
+  background-color: var(--color-coral);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+}
+
+/* 부드러운 펼침: grid 0fr→1fr (내용 높이 몰라도 트랜지션 가능) */
+.faq-a-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease-out-expo);
+}
+.faq-item[open] .faq-a-wrap { grid-template-rows: 1fr; }
 .faq-a {
-  padding: 0 1.5rem 1.25rem;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
   margin: 0;
   color: var(--color-on-surface-variant);
-  line-height: 1.7;
+  line-height: 1.75;
+}
+.faq-item[open] .faq-a { padding-bottom: 1.35rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-a-wrap, .faq-q::after, .faq-item { transition: none; }
 }

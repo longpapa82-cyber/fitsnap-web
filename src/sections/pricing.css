@@ -8,8 +8,9 @@
 .price-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 1.5rem;
+  align-items: center; /* lead 카드가 살짝 커도 세로 중앙 정렬 */
+  perspective: 1000px; /* 자식 카드 3D tilt 원근 */
 }
 .price-card {
   position: relative;
@@ -20,8 +21,30 @@
   box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
+  transition: transform 250ms var(--ease-out-expo), box-shadow 250ms var(--ease-out-expo);
 }
-.price-card--lead { border-color: var(--color-coral); }
+/* 일반 카드 호버: 살짝 떠오름 */
+.price-card:not(.price-card--lead):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(42, 39, 36, 0.12), var(--shadow-soft);
+}
+
+/* 추천 카드: 확대 + 코랄 글로우 + 3D tilt(마우스 방향, --rx/--ry는 useTilt가 세팅) */
+.price-card--lead {
+  border-color: var(--color-coral);
+  background: linear-gradient(165deg, #fff, var(--color-coral-tint));
+  box-shadow: 0 20px 50px rgba(255, 107, 74, 0.22), var(--shadow-soft);
+  transform-style: preserve-3d;
+  transform: scale(1.05) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  z-index: 2;
+}
+.price-card--lead .price-title,
+.price-card--lead .price-amount,
+.price-card--lead .price-perks { transform: translateZ(24px); }
+@media (prefers-reduced-motion: reduce) {
+  .price-card--lead { transform: scale(1.03); }
+  .price-card { transition: box-shadow 250ms; }
+}
 .price-badge {
   position: absolute;
   top: -0.7rem;

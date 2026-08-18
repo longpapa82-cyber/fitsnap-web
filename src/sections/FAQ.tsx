@@ -34,7 +34,10 @@ export function FAQ() {
           <Reveal key={item.q} delay={i * 60} as="div">
             <details className="faq-item" open={i === 0}>
               <summary className="faq-q">{item.q}</summary>
-              <p className="faq-a">{item.a}</p>
+              {/* grid-rows 0fr→1fr 트릭으로 부드럽게 펼침(HQ-2) */}
+              <div className="faq-a-wrap">
+                <p className="faq-a">{item.a}</p>
+              </div>
             </details>
           </Reveal>
         ))}

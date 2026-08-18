@@ -1,7 +1,49 @@
+import { useRef } from 'react';
 import { Section } from '../components/ui/Section';
 import { Reveal } from '../components/ui/Reveal';
+import { useTilt } from '../hooks/useTilt';
 import { SUBSCRIPTIONS, CREDIT_PACKS } from '../constants/products.mjs';
 import './pricing.css';
+
+interface Plan {
+  title: string;
+  priceLabel: string;
+  period: string;
+  isLead?: boolean;
+  trialDays?: number;
+  anchorNote?: string;
+  perks: string[];
+}
+
+/** 구독 카드 본문(공용). */
+function CardBody({ s }: { s: Plan }) {
+  return (
+    <>
+      {s.isLead && <span className="price-badge">추천</span>}
+      <h3 className="price-title">{s.title}</h3>
+      <div className="price-amount">
+        <strong>{s.priceLabel}</strong>
+        <span>/{s.period}</span>
+      </div>
+      {s.trialDays ? <p className="price-trial">{s.trialDays}일 무료체험</p> : null}
+      {s.anchorNote ? <p className="price-anchor">{s.anchorNote}</p> : null}
+      <ul className="price-perks">
+        {s.perks.map((p) => <li key={p}>{p}</li>)}
+      </ul>
+    </>
+  );
+}
+
+/** 추천 플랜 카드 — 3D tilt + 글로우(HQ-1). 시선을 이 카드로 유도. */
+function LeadCard({ s }: { s: Plan }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useTilt(ref, 7);
+  return (
+    <div ref={ref} className="price-card price-card--lead">
+      <CardBody s={s} />
+    </div>
+  );
+}
 
 /**
  * Pricing — 구독 3티어(주간 리드/월/연 앵커) + 크레딧팩. 앱 products.ts 값 미러링.
@@ -13,21 +55,15 @@ export function Pricing() {
       <p className="pricing-note">가입하면 무료 크레딧을 드려요. 마음에 들면 구독하거나 필요한 만큼 충전하세요.</p>
 
       <div className="price-grid">
-        {SUBSCRIPTIONS.map((s, i) => (
+        {(SUBSCRIPTIONS as Plan[]).map((s, i) => (
           <Reveal key={s.title} delay={i * 80}>
-            <div className={`price-card${s.isLead ? ' price-card--lead' : ''}`}>
-              {s.isLead && <span className="price-badge">추천</span>}
-              <h3 className="price-title">{s.title}</h3>
-              <div className="price-amount">
-                <strong>{s.priceLabel}</strong>
-                <span>/{s.period}</span>
+            {s.isLead ? (
+              <LeadCard s={s} />
+            ) : (
+              <div className="price-card">
+                <CardBody s={s} />
               </div>
-              {s.trialDays ? <p className="price-trial">{s.trialDays}일 무료체험</p> : null}
-              {s.anchorNote ? <p className="price-anchor">{s.anchorNote}</p> : null}
-              <ul className="price-perks">
-                {s.perks.map((p) => <li key={p}>{p}</li>)}
-              </ul>
-            </div>
+            )}
           </Reveal>
         ))}
       </div>
