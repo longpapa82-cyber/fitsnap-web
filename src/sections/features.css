@@ -1,20 +1,95 @@
-.feat-grid {
+/* bento 그리드: 대표 타일(a) 크게 2×2, 나머지(b·c·d) 작게 */
+.feat-bento {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(1rem, 0.5rem + 1.5vw, 1.5rem);
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(150px, auto));
+  grid-template-areas:
+    'a a b'
+    'a a c'
+    'd d d';
 }
+.feat-card--a { grid-area: a; }
+.feat-card--b { grid-area: b; }
+.feat-card--c { grid-area: c; }
+.feat-card--d { grid-area: d; }
+
 .feat-card {
+  position: relative;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
   box-shadow: var(--shadow-soft);
-  height: 100%;
-  transition: transform 200ms var(--ease-out-expo);
+  overflow: hidden;
+  /* 스태거 리빌 */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 550ms var(--ease-out-expo), transform 550ms var(--ease-out-expo),
+    box-shadow 250ms var(--ease-out-expo);
 }
-.feat-card:hover { transform: translateY(-4px); }
+.feat-bento--in .feat-card { opacity: 1; transform: none; }
+
+/* 호버 깊이: 떠오름 + 코랄 글로우 */
+.feat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(255, 107, 74, 0.18), var(--shadow-soft);
+}
+
 .feat-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
 .feat-title { font-size: 1.15rem; margin: 0 0 0.4rem; }
-.feat-desc { color: var(--color-on-surface-variant); font-size: 0.95rem; margin: 0; }
+.feat-desc { color: var(--color-on-surface-variant); font-size: 0.95rem; margin: 0; max-width: 34ch; }
 
-@media (max-width: 900px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .feat-grid { grid-template-columns: 1fr; } }
+/* 대표 타일 확대 톤 */
+.feat-card--big {
+  background: linear-gradient(155deg, #fff, var(--color-coral-tint));
+  display: flex;
+  flex-direction: column;
+}
+.feat-card--big .feat-icon { font-size: 2.4rem; }
+.feat-card--big .feat-title { font-size: 1.5rem; }
+
+/* 대표 타일 미니 before/after 미리보기 */
+.feat-preview {
+  position: relative;
+  margin-top: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: var(--shadow-soft);
+}
+.feat-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+.feat-preview img:last-of-type { clip-path: inset(0 0 0 50%); }
+.feat-preview-line {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.25);
+}
+
+/* 태블릿: big을 위, 나머지 2열 */
+@media (max-width: 860px) {
+  .feat-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'a a'
+      'b c'
+      'd d';
+  }
+}
+/* 모바일: 1열 스택 */
+@media (max-width: 520px) {
+  .feat-bento { grid-template-columns: 1fr; grid-template-areas: 'a' 'b' 'c' 'd'; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feat-card { opacity: 1; transform: none; transition: box-shadow 250ms; }
+}
