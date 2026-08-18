@@ -49,12 +49,14 @@
   color: #fff;
   font-weight: 700;
   font-size: 0.9rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.6rem 1.25rem;
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-coral);
-  transition: transform 150ms var(--ease-out-expo);
+  /* FUN-3: 마그네틱(--mx/--my는 useMagnetic이 세팅) */
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  transition: transform 200ms var(--ease-out-expo), box-shadow 150ms var(--ease-out-expo);
 }
-.nav-cta:hover { transform: translateY(-1px); }
+.nav-cta:hover { box-shadow: 0 10px 26px rgba(255, 107, 74, 0.35); }
 
 /* 모바일: 앵커 링크 숨김(브랜드 + CTA만). 스크롤 앵커는 섹션 내부 CTA로 커버. */
 @media (max-width: 720px) {

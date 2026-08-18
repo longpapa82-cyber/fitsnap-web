@@ -25,6 +25,19 @@ const OUTFITS: Outfit[] = [
 export function OutfitSwap() {
   const [active, setActive] = useState(1); // 니트로 시작(원본 다음)
   const [paused, setPaused] = useState(false);
+  const [shake, setShake] = useState(false);
+
+  // FUN-2: 랜덤 스타일링 — 현재와 다른 무작위 옷으로 전환 + 흔들림 모션.
+  const randomize = () => {
+    setActive((cur) => {
+      let next = cur;
+      while (next === cur) next = Math.floor(Math.random() * OUTFITS.length);
+      return next;
+    });
+    setPaused(true);
+    setShake(true);
+    window.setTimeout(() => setShake(false), 500);
+  };
   const reduced = useReducedMotion();
   const timer = useRef<number | null>(null);
 
@@ -43,7 +56,7 @@ export function OutfitSwap() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="os-stage">
+      <div className={`os-stage${shake ? ' os-stage--shake' : ''}`}>
         {OUTFITS.map((o, i) => (
           <img
             key={o.id}
@@ -55,6 +68,19 @@ export function OutfitSwap() {
           />
         ))}
         <span className="os-badge">{OUTFITS[active].label}</span>
+        {/* FUN-2: 랜덤 스타일링 버튼 */}
+        <button className="os-random" onClick={randomize} aria-label="랜덤 스타일링">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+            strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <rect x="3" y="3" width="18" height="18" rx="3" />
+            <circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none" />
+            <circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none" />
+          </svg>
+          <span>랜덤</span>
+        </button>
       </div>
 
       {/* 옷 썸네일 선택 */}

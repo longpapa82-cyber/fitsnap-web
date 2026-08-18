@@ -1,5 +1,6 @@
 import { Section } from '../components/ui/Section';
 import { Reveal } from '../components/ui/Reveal';
+import { StatStrip } from '../components/ui/StatStrip';
 import { asset } from '../lib/asset';
 import './how-it-works.css';
 
@@ -38,6 +39,9 @@ export function HowItWorks() {
           </Reveal>
         ))}
       </ol>
+      <Reveal delay={200}>
+        <StatStrip />
+      </Reveal>
     </Section>
   );
 }

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SITE } from '../../constants/site.shared.mjs';
+import { useMagnetic } from '../../hooks/useMagnetic';
 import './nav.css';
 
 /** 섹션 앵커 — 랜딩 섹션 id와 일치. */
@@ -16,6 +17,8 @@ const LINKS = [
  */
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+  useMagnetic(ctaRef, 0.25); // FUN-3: 다운로드 CTA 마그네틱
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -37,7 +40,7 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a className="nav-cta" href="#download">
+        <a className="nav-cta" href="#download" ref={ctaRef}>
           다운로드
         </a>
       </div>

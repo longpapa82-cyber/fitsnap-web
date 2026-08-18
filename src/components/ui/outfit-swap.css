@@ -35,6 +35,51 @@
   box-shadow: var(--shadow-coral);
 }
 
+/* FUN-2: 랜덤 스타일링 버튼 — 좌하단 */
+.os-random {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-coral);
+  font-size: 0.8rem;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: transform 150ms var(--ease-out-expo), box-shadow 150ms var(--ease-out-expo);
+}
+.os-random svg { width: 1.05rem; height: 1.05rem; }
+.os-random:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 107, 74, 0.25);
+}
+.os-random:hover svg { animation: osDice 500ms ease-in-out; }
+@keyframes osDice {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-18deg); }
+  75% { transform: rotate(18deg); }
+}
+
+/* 스테이지 흔들림(랜덤 클릭 시) */
+.os-stage--shake { animation: osShake 500ms var(--ease-out-expo); }
+@keyframes osShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px) rotate(-0.6deg); }
+  40% { transform: translateX(5px) rotate(0.5deg); }
+  60% { transform: translateX(-4px) rotate(-0.4deg); }
+  80% { transform: translateX(3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .os-random:hover svg, .os-stage--shake { animation: none; }
+}
+
 /* 옷 썸네일 줄 */
 .os-thumbs {
   display: flex;
