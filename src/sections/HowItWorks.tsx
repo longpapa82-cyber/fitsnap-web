@@ -5,7 +5,7 @@ import './how-it-works.css';
 const STEPS = [
   { n: '01', title: '내 사진 업로드', desc: '전신이 나온 사진 한 장이면 충분해요.' },
   { n: '02', title: '입어볼 옷 선택', desc: '쇼핑몰 옷 사진이나 갖고 있는 옷 사진을 올려요.' },
-  { n: '03', title: 'AI가 입혀줘요', desc: '몇 초 만에 진짜 입은 것처럼 결과를 확인해요.' },
+  { n: '03', title: 'AI가 입혀줘요', desc: '몇 초 만에 입은 모습을 미리 확인해요.' },
 ];
 
 /** HowItWorks — 3단계 플로우. FitSnap 사용법을 한눈에. */

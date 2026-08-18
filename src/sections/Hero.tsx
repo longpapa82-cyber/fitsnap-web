@@ -24,7 +24,7 @@ export function Hero() {
           </Reveal>
           <Reveal delay={160}>
             <p className="hero-sub">
-              내 사진과 옷 사진만 있으면 돼요. AI가 진짜 입은 것처럼 보여줘, 사기 전에 어울리는지 확인할 수 있어요.
+              내 사진과 옷 사진만 있으면 돼요. AI가 입은 모습을 미리 보여줘, 사기 전에 어울리는지 확인하는 데 도움을 줘요.
             </p>
           </Reveal>
           <Reveal delay={240}>

@@ -58,3 +58,14 @@
 .pack-chip span { color: var(--color-coral); font-weight: 700; }
 
 @media (max-width: 820px) { .price-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
+
+/* 출시 예정 가격 면책 */
+.pricing-disclaimer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-on-surface-variant);
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+}

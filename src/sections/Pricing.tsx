@@ -10,7 +10,7 @@ import './pricing.css';
 export function Pricing() {
   return (
     <Section id="pricing" eyebrow="Pricing" title="부담 없이 시작해요">
-      <p className="pricing-note">무료로 3장까지 입어볼 수 있어요. 마음에 들면 구독하거나 필요한 만큼 충전하세요.</p>
+      <p className="pricing-note">가입하면 무료 크레딧을 드려요. 마음에 들면 구독하거나 필요한 만큼 충전하세요.</p>
 
       <div className="price-grid">
         {SUBSCRIPTIONS.map((s, i) => (
@@ -45,6 +45,10 @@ export function Pricing() {
           </div>
         </div>
       </Reveal>
+
+      <p className="pricing-disclaimer">
+        표시된 가격은 출시 예정 가격이며, 실제 결제 금액은 App Store·Google Play의 지역별 가격에 따라 달라질 수 있어요.
+      </p>
     </Section>
   );
 }

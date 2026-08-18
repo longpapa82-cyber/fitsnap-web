@@ -24,12 +24,12 @@ export function Demo() {
         </Reveal>
         <Reveal delay={120}>
           <div className="demo-copy">
-            <h3 className="demo-heading">얼굴도, 포즈도, 배경도 그대로</h3>
+            <h3 className="demo-heading">얼굴·포즈·배경은 최대한 유지</h3>
             <p className="demo-text">
-              FitSnap은 당신의 모습을 그대로 유지한 채 옷만 자연스럽게 바꿔요. 체형 정보를 입력하면 핏도 더 정확해져요.
+              FitSnap은 당신의 모습을 최대한 유지한 채 옷을 바꿔 보여줘요. 체형 정보를 입력하면 핏 표현에 참고해요. 결과는 구매 판단을 돕는 참고용이에요.
             </p>
             <ul className="demo-points">
-              <li>실제 착용감에 가까운 드레이프·핏</li>
+              <li>옷의 드레이프·핏을 이미지로 미리보기</li>
               <li>고해상도 결과 · 워터마크 없음(구독)</li>
               <li>결과는 내 옷장에 저장</li>
             </ul>
