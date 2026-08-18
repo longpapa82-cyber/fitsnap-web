@@ -13,7 +13,7 @@ const OUTFITS: Outfit[] = [
   { id: 'base', label: '원본', src: '/assets/demo/outfits/base.webp' },
   { id: 'knit', label: '니트', src: '/assets/demo/outfits/knit.webp' },
   { id: 'coat', label: '코트', src: '/assets/demo/outfits/coat.webp' },
-  { id: 'dress', label: '원피스', src: '/assets/demo/outfits/dress.webp' },
+  { id: 'shirt', label: '셔츠', src: '/assets/demo/outfits/shirt.webp' },
   { id: 'jacket', label: '자켓', src: '/assets/demo/outfits/jacket.webp' },
 ];
 

@@ -53,8 +53,8 @@ export function Features() {
             {f.big && (
               <div className="feat-preview">
                 <BeforeAfter
-                  beforeSrc="/assets/demo/hero-before.webp"
-                  afterSrc="/assets/demo/hero-after.webp"
+                  beforeSrc="/assets/demo/features-before.webp"
+                  afterSrc="/assets/demo/features-after.webp"
                   beforeAlt="원본"
                   afterAlt="AI 착용"
                 />

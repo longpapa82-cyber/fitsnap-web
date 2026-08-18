@@ -14,11 +14,13 @@ const ICONS = {
   dress: <path d="M9 3 L15 3 L14 8 L18 21 L6 21 L10 8 Z M9 3 L11 6 M15 3 L13 6" />,
 };
 
-const OUTFITS = ['coat', 'dress', 'jacket', 'knit'];
-// 옷 이미지 카드 — 좌우 번갈아, 전 페이지에 촘촘히(top %).
+// 여성 4종 + 남성 4종 = 다양한 인물·옷(다양성 강화). 좌우 가장자리 전 페이지 분포.
+const OUTFITS = ['coat', 'dress', 'jacket', 'knit', 'm-knit', 'm-coat', 'm-jacket', 'm-shirt'];
+// 옷 이미지 카드 — 좌우 번갈아, 전 페이지에 촘촘히(top %). 8종을 겹치지 않게 순환.
 const FLOAT_IMGS = [
-  { o: 0, cls: 'fi-1' }, { o: 1, cls: 'fi-2' }, { o: 2, cls: 'fi-3' }, { o: 3, cls: 'fi-4' },
-  { o: 1, cls: 'fi-5' }, { o: 0, cls: 'fi-6' }, { o: 3, cls: 'fi-7' }, { o: 2, cls: 'fi-8' },
+  { o: 0, cls: 'fi-1' }, { o: 4, cls: 'fi-2' }, { o: 1, cls: 'fi-3' }, { o: 5, cls: 'fi-4' },
+  { o: 2, cls: 'fi-5' }, { o: 6, cls: 'fi-6' }, { o: 3, cls: 'fi-7' }, { o: 7, cls: 'fi-8' },
+  { o: 5, cls: 'fi-9' }, { o: 1, cls: 'fi-10' }, { o: 6, cls: 'fi-11' }, { o: 2, cls: 'fi-12' },
 ];
 
 const LINE_ICONS: { icon: keyof typeof ICONS; cls: string }[] = [
