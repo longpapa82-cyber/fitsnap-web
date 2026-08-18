@@ -27,6 +27,12 @@ export default function App() {
 
   return (
     <>
+      {/* 전역 배경 blob — 느리게 흐르는 색 얼룩(재미·깊이). 콘텐츠 뒤. */}
+      <div className="bg-blobs" aria-hidden>
+        <span className="bg-blob bg-blob--1" />
+        <span className="bg-blob bg-blob--2" />
+        <span className="bg-blob bg-blob--3" />
+      </div>
       <a className="skip-link" href="#main">본문 바로가기</a>
       <Nav />
       <main id="main">
