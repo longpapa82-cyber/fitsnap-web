@@ -1,6 +1,7 @@
 import { BeforeAfter } from '../components/ui/BeforeAfter';
 import { StoreCTA } from '../components/ui/StoreCTA';
 import { Reveal } from '../components/ui/Reveal';
+import { BgApparel } from '../components/ui/BgApparel';
 import { SITE } from '../constants/site.shared.mjs';
 import './hero.css';
 
@@ -20,13 +21,16 @@ const FLOAT_TAGS = [
 export function Hero() {
   return (
     <section id="hero" className="hero">
-      {/* 피팅룸 분위기: 은은한 광원 + 떠다니는 옷 칩 */}
+      {/* 피팅룸 분위기: 광원 + blob + 옷 카드/칩 — 히어로에만 배치(스크롤 시 함께 흐름) */}
       <div className="hero-atmos" aria-hidden>
         <span className="hero-glow" />
+        <span className="hero-blob hero-blob--1" />
+        <span className="hero-blob hero-blob--2" />
         {FLOAT_TAGS.map((t) => (
           <span key={t.label} className={`hero-tag ${t.cls}`}>{t.label}</span>
         ))}
       </div>
+      <BgApparel />
 
       <div className="hero-inner">
         <div className="hero-copy">

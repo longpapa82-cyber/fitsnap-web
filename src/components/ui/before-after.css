@@ -4,15 +4,8 @@
   aspect-ratio: 4 / 5;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  cursor: ew-resize;
-  touch-action: none; /* 드래그 시 스크롤 방지 */
-  background: var(--color-coral-tint);
+  background: #F4F1EC;
   user-select: none;
-}
-.ba-stage:focus-visible {
-  outline: 3px solid var(--color-coral);
-  outline-offset: 3px;
 }
 
 .ba-img {
@@ -24,70 +17,31 @@
   pointer-events: none;
 }
 
-/*
-  before 클립 래퍼 — 앱 방식: width만 줄이고 overflow:hidden으로 왼쪽부터 노출.
-  안의 이미지(ba-stage-w)는 스테이지 실측 폭(--ba-w)으로 고정 → 래퍼가 줄어도
-  이미지는 왼쪽 기준 동일 위치·크기 → after와 정확히 겹침(정렬된 쌍일 때).
-*/
-.ba-clip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+/* after: 위에 얹고 opacity 크로스페이드 */
+.ba-after {
+  opacity: 0;
+  transition: opacity 900ms ease-in-out;
 }
-.ba-stage-w {
-  width: var(--ba-w, 100%);
-  max-width: none;
-}
-
-.ba-clip.ba-anim { transition: width var(--duration) var(--ease-out-expo); }
-.ba-handle.ba-anim { transition: left var(--duration) var(--ease-out-expo); }
-
-.ba-handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #fff;
-  transform: translateX(-50%);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-}
-.ba-handle-grip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  background: #fff;
-  color: var(--color-coral);
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: -2px;
-  box-shadow: var(--shadow-soft);
-}
+.ba-after.ba-show { opacity: 1; }
 
 .ba-label {
   position: absolute;
   bottom: 1rem;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-full);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
-  background: rgba(42, 39, 36, 0.6);
+  letter-spacing: 0.03em;
   color: #fff;
   pointer-events: none;
+  opacity: 0.35;
+  transition: opacity 900ms ease-in-out;
 }
-.ba-label--before { left: 1rem; }
+.ba-label--on { opacity: 1; }
+.ba-label--before { left: 1rem; background: rgba(42, 39, 36, 0.7); }
 .ba-label--after { right: 1rem; background: var(--color-coral); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ba-clip.ba-anim, .ba-handle.ba-anim { transition: none; }
+  .ba-after { opacity: 1; transition: none; }
+  .ba-label { transition: none; }
 }

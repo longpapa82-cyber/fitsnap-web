@@ -1,5 +1,6 @@
+/* absolute → 히어로 섹션 기준. 스크롤 시 콘텐츠와 함께 흘러 자연스럽다. */
 .bg-apparel {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;

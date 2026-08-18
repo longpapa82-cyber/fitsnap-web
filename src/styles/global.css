@@ -24,29 +24,7 @@ body {
     linear-gradient(165deg, #FFF0E9 0%, #FDF3EC 42%, #FBF6F0 100%);
   background-attachment: fixed;
 }
-/* 부드럽게 흐르는 색 blob — 재미 요소(느린 이동). */
-body > .bg-blobs {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.bg-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-  will-change: transform;
-}
-.bg-blob--1 { width: 44vw; height: 44vw; top: -8%; right: -6%; background: rgba(255, 107, 74, 0.28); animation: blobDrift1 22s ease-in-out infinite; }
-.bg-blob--2 { width: 40vw; height: 40vw; bottom: -10%; left: -8%; background: rgba(255, 178, 122, 0.26); animation: blobDrift2 26s ease-in-out infinite; }
-.bg-blob--3 { width: 34vw; height: 34vw; top: 40%; left: 55%; background: rgba(212, 175, 55, 0.18); animation: blobDrift3 30s ease-in-out infinite; }
-@keyframes blobDrift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-6vw, 5vh) scale(1.1); } }
-@keyframes blobDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(5vw, -4vh) scale(1.08); } }
-@keyframes blobDrift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-4vw, -6vh) scale(1.12); } }
-@media (prefers-reduced-motion: reduce) { .bg-blob { animation: none; } }
-/* 전역 grain — fixed 레이어. 아주 옅게 flat 탈피. */
+/* 전역 grain — fixed 텍스처(균일해서 스크롤 고정돼도 자연스러움). */
 body::before {
   content: '';
   position: fixed;
