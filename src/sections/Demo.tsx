@@ -1,37 +1,31 @@
 import { Section } from '../components/ui/Section';
 import { Reveal } from '../components/ui/Reveal';
-import { BeforeAfter } from '../components/ui/BeforeAfter';
+import { OutfitSwap } from '../components/ui/OutfitSwap';
 import './demo.css';
 
 /**
- * Demo — 실제 변신 결과를 크게 보여주는 쇼케이스.
- * W1 Hero의 슬라이더를 재사용하되, 여기선 "결과 품질"에 집중한 카피와 함께.
- * (실제 VTON 케이스가 늘면 갤러리로 확장 가능)
+ * Demo — 옷장 스와이프(D2). 같은 인물에 옷을 갈아입혀 보는 가상 피팅룸 체험.
+ * 썸네일을 눌러 옷을 바꾸는 재미로 "입어보기"를 직관적으로 보여준다.
  */
 export function Demo() {
   return (
-    <Section id="demo" eyebrow="See the magic" title="직접 보세요, 이 변신을">
+    <Section id="demo" eyebrow="Virtual fitting room" title="옷장을 넘겨보며 입어봐요">
       <div className="demo-grid">
         <Reveal>
           <div className="demo-visual">
-            <BeforeAfter
-              beforeSrc="/assets/demo/hero-before.webp"
-              afterSrc="/assets/demo/hero-after.webp"
-              beforeAlt="옷 입기 전"
-              afterAlt="AI 가상 착용 결과"
-            />
+            <OutfitSwap />
           </div>
         </Reveal>
         <Reveal delay={120}>
           <div className="demo-copy">
-            <h3 className="demo-heading">얼굴·포즈·배경은 최대한 유지</h3>
+            <h3 className="demo-heading">한 사람, 여러 옷 — 넘겨보며 비교</h3>
             <p className="demo-text">
-              FitSnap은 당신의 모습을 최대한 유지한 채 옷을 바꿔 보여줘요. 체형 정보를 입력하면 핏 표현에 참고해요. 결과는 구매 판단을 돕는 참고용이에요.
+              마음에 드는 옷을 눌러보세요. 같은 모습에 옷만 갈아입혀 어떤 게 더 어울리는지 한눈에 비교할 수 있어요. 결과는 구매 판단을 돕는 참고용이에요.
             </p>
             <ul className="demo-points">
-              <li>옷의 드레이프·핏을 이미지로 미리보기</li>
-              <li>고해상도 결과 · 워터마크 없음(구독)</li>
-              <li>결과는 내 옷장에 저장</li>
+              <li>옷 썸네일을 눌러 즉시 갈아입기</li>
+              <li>얼굴·포즈는 그대로, 옷만 바뀜</li>
+              <li>마음에 드는 결과는 내 옷장에 저장</li>
             </ul>
           </div>
         </Reveal>
