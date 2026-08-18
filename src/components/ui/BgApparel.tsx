@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { asset } from '../../lib/asset';
+import { useParallax } from '../../hooks/useParallax';
 import './bg-apparel.css';
 
 /**
@@ -35,8 +37,10 @@ const LINE_ICONS: { icon: keyof typeof ICONS; cls: string }[] = [
 ];
 
 export function BgApparel() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useParallax(rootRef);
   return (
-    <div className="bg-apparel" aria-hidden>
+    <div className="bg-apparel" aria-hidden ref={rootRef}>
       {FLOAT_IMGS.map((f, i) => (
         <div key={i} className={`fi ${f.cls}`}>
           <img src={asset(`/assets/demo/float/${OUTFITS[f.o]}.webp`)} alt="" loading="lazy" draggable={false} />

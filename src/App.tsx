@@ -1,4 +1,5 @@
 import { useHashRoute } from './hooks/useHashRoute';
+import { useSectionTint } from './hooks/useSectionTint';
 import { Nav } from './components/ui/Nav';
 import { BgApparel } from './components/ui/BgApparel';
 import { Hero } from './sections/Hero';
@@ -19,8 +20,12 @@ import './styles/global.css';
  * 홈(랜딩) + 법리 3종(#privacy·#terms·#account-deletion)을 해시로 전환.
  * 정적 호스팅(GitHub Pages)이라 서버 라우팅 없이 SPA 내에서 렌더.
  */
+const HOME_SECTIONS = ['hero', 'how', 'demo', 'features', 'pricing', 'faq'];
+
 export default function App() {
   const route = useHashRoute();
+  // 홈 섹션 톤 변주(BG-2). 법리 페이지에선 섹션이 없어 no-op.
+  useSectionTint(HOME_SECTIONS);
 
   if (route === 'privacy') return <PrivacyPage />;
   if (route === 'terms') return <TermsPage />;

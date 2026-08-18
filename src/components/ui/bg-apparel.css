@@ -13,7 +13,9 @@
   overflow: hidden;
 }
 
-/* 부유하는 실제 옷 이미지 카드 — 좌우 가장자리, 전 페이지에 촘촘히 */
+/* 부유하는 실제 옷 이미지 카드 — 좌우 가장자리, 전 페이지에 촘촘히.
+   .fi = 스크롤 패럴럭스(translateY = --scroll * --speed) + 회전 담당.
+   내부 img = 제자리 부유(fiFloat). 두 transform을 다른 요소로 분리해 충돌 방지. */
 .fi {
   position: absolute;
   border-radius: 16px;
@@ -21,10 +23,17 @@
   box-shadow: 0 14px 36px rgba(42, 39, 36, 0.12);
   opacity: 0.48;
   will-change: transform;
-  animation: fiFloat 20s ease-in-out infinite;
-  transform: rotate(var(--r, -6deg));
+  --speed: 0.04;
+  transform: translateY(calc(var(--scroll, 0) * var(--speed) * -1px)) rotate(var(--r, -6deg));
 }
-.fi img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fi img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+  animation: fiFloat 20s ease-in-out infinite;
+}
 /* 좌측 카드 */
 .fi-1  { top: 4%;  left: 1.5%; width: 118px; height: 118px; --r: -8deg; animation-delay: 0s;   }
 .fi-3  { top: 21%; left: 2.5%; width: 108px; height: 108px; --r: 5deg;  animation-delay: -6s;  }
@@ -40,9 +49,14 @@
 .fi-9  { top: 82%; right: 1.5%; width: 120px; height: 120px; --r: 5deg;  animation-delay: -23s; }
 .fi-11 { top: 96%; right: 2.5%; width: 104px; height: 104px; --r: -7deg; animation-delay: -14s; }
 .fi-2, .fi-4, .fi-5, .fi-7, .fi-9, .fi-11 { left: auto; }
+/* 패럴럭스 속도 차등 — 카드마다 다르게 흘러 깊이감(레이어) 발생 */
+.fi-1  { --speed: 0.03; } .fi-2  { --speed: 0.07; } .fi-3  { --speed: 0.05; }
+.fi-4  { --speed: 0.09; } .fi-5  { --speed: 0.04; } .fi-6  { --speed: 0.08; }
+.fi-7  { --speed: 0.03; } .fi-8  { --speed: 0.06; } .fi-9  { --speed: 0.05; }
+.fi-10 { --speed: 0.08; } .fi-11 { --speed: 0.04; } .fi-12 { --speed: 0.07; }
 @keyframes fiFloat {
-  0%, 100% { transform: translateY(0) rotate(var(--r)); }
-  50%      { transform: translateY(-22px) rotate(calc(var(--r) * -0.6)); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-14px) scale(1.02); }
 }
 
 /* 라인 의류 아이콘 — 카드 사이 여백 채움(더 촘촘) */
@@ -79,5 +93,7 @@
   .bg-apparel { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fi, .ap { animation: none; }
+  .fi, .fi img, .ap { animation: none; }
+  /* 패럴럭스도 정지(useParallax가 --scroll 미세팅하지만 이중 안전장치) */
+  .fi { transform: rotate(var(--r, -6deg)); }
 }

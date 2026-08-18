@@ -39,7 +39,28 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 140px 140px;
 }
-/* 본문 콘텐츠는 grain 위로 */
+/* 섹션별 톤 변주(BG-2) — data-section에 따라 은은한 색조 오버레이가 교차 페이드.
+   fixed라 스크롤 무관, opacity/색만 전환(컴포지터). 기본은 코랄 톤. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: background 900ms var(--ease-out-expo);
+  background: radial-gradient(60% 50% at 85% 15%, rgba(255, 107, 74, 0.10), transparent 60%);
+}
+body[data-section='how']::after      { background: radial-gradient(60% 50% at 15% 20%, rgba(255, 148, 120, 0.12), transparent 60%); }
+body[data-section='demo']::after     { background: radial-gradient(60% 55% at 88% 40%, rgba(212, 175, 55, 0.12), transparent 60%); }
+body[data-section='features']::after { background: radial-gradient(65% 55% at 12% 60%, rgba(255, 107, 74, 0.11), transparent 60%); }
+body[data-section='pricing']::after  { background: radial-gradient(60% 50% at 85% 70%, rgba(255, 148, 120, 0.13), transparent 60%); }
+body[data-section='faq']::after      { background: radial-gradient(60% 50% at 20% 80%, rgba(212, 175, 55, 0.10), transparent 60%); }
+@media (prefers-reduced-motion: reduce) {
+  body::after { transition: none; }
+}
+
+/* 본문 콘텐츠는 grain/톤오버레이 위로 */
 #main, header, footer { position: relative; z-index: 1; }
 
 h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
