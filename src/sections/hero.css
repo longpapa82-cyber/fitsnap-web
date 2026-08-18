@@ -1,10 +1,59 @@
 .hero {
+  position: relative;
+  overflow: hidden;
   padding: calc(var(--space-section) * 0.7) var(--space-gutter) var(--space-section);
-  /* 부드러운 크림→옅은코랄 분위기 배경 */
-  background: radial-gradient(120% 90% at 85% 10%, var(--color-coral-tint), var(--color-background) 55%);
+  /* 피팅룸 분위기: 따뜻한 방사형 광원 + 크림 베이스 */
+  background:
+    radial-gradient(90% 70% at 80% 0%, rgba(255, 107, 74, 0.10), transparent 60%),
+    radial-gradient(120% 90% at 85% 10%, var(--color-coral-tint), var(--color-background) 55%);
+}
+
+/* ── 분위기 레이어: 광원 + 떠다니는 옷 칩 ─────────────────────── */
+.hero-atmos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-glow {
+  position: absolute;
+  top: -10%;
+  right: 8%;
+  width: 42vw;
+  height: 42vw;
+  max-width: 560px;
+  max-height: 560px;
+  background: radial-gradient(circle, rgba(255, 148, 120, 0.25), transparent 68%);
+  filter: blur(8px);
+}
+.hero-tag {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--color-coral-tint);
+  color: var(--color-on-surface);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-soft);
+  animation: heroFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+/* 거울(우측)과 겹치지 않게 — 거울 바깥 여백에 배치 */
+.hero-tag--1 { top: 14%;  right: 47%; animation-delay: 0s;   }
+.hero-tag--2 { top: 22%;  right: 2%;  animation-delay: -1.4s; }
+.hero-tag--3 { top: 78%;  right: 49%; animation-delay: -2.8s; }
+.hero-tag--4 { top: 84%;  right: 3%;  animation-delay: -4.2s; }
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-12px) rotate(2deg); }
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
@@ -29,7 +78,23 @@
   font-size: var(--text-hero);
   margin: 0;
 }
-.hero-accent { color: var(--color-coral); }
+.hero-accent { position: relative; color: var(--color-coral); display: inline-block; }
+/* 강조어 밑줄이 그려지는 draw 애니메이션 */
+.hero-underline {
+  position: absolute;
+  left: 0;
+  bottom: -0.18em;
+  width: 100%;
+  height: 0.35em;
+  color: var(--color-coral-soft);
+  overflow: visible;
+}
+.hero-underline path {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: heroDraw 900ms var(--ease-out-expo) 500ms forwards;
+}
+@keyframes heroDraw { to { stroke-dashoffset: 0; } }
 
 .hero-sub {
   color: var(--color-on-surface-variant);
@@ -41,17 +106,65 @@
 .hero-cta { margin-top: 0.5rem; }
 
 .hero-visual { display: flex; flex-direction: column; gap: 0.75rem; }
+
+/* ── 전신 거울 ────────────────────────────────────────────── */
+.hero-mirror { position: relative; }
+.hero-mirror-frame {
+  position: relative;
+  border-radius: calc(var(--radius-lg) + 6px);
+  padding: 8px;
+  /* 골드+코랄 거울 테두리 */
+  background: linear-gradient(155deg, rgba(212, 175, 55, 0.55), rgba(255, 107, 74, 0.35) 45%, rgba(212, 175, 55, 0.4));
+  box-shadow:
+    0 24px 60px rgba(42, 39, 36, 0.18),
+    0 2px 0 rgba(255, 255, 255, 0.6) inset;
+}
+/* 거울 상단 대각 광택 */
+.hero-mirror-sheen {
+  position: absolute;
+  inset: 8px;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 30%);
+  mix-blend-mode: screen;
+}
+/* 거울 아래 바닥 반사 — 살짝 띄우고 페이드 */
+.hero-reflection {
+  margin: 10px auto 0;
+  width: 82%;
+  height: 80px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 78%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 78%);
+  opacity: 0.4;
+}
+.hero-reflection img {
+  width: 100%;
+  margin-top: -8%;
+  transform: scaleY(-1);
+  filter: blur(1.5px);
+}
+
 .hero-hint {
   text-align: center;
   font-size: 0.85rem;
   color: var(--color-on-surface-variant);
-  margin: 0;
+  margin: 0.5rem 0 0;
 }
 
-/* 모바일: 1열로. 슬라이더가 카피 아래로. */
+/* 모바일: 1열. 떠다니는 칩·반사는 정돈. */
 @media (max-width: 820px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-copy { align-items: center; text-align: center; }
   .hero-sub { max-width: 34ch; }
   .hero-visual { max-width: 420px; margin: 0 auto; width: 100%; }
+  .hero-tag--1, .hero-tag--3 { display: none; } /* 좁은 화면선 칩 절반만 */
+  .hero-tag--2 { top: 4%; right: 4%; }
+  .hero-tag--4 { top: 8%; left: 4%; right: auto; }
+}
+
+/* 접근성: 모션 최소화 시 float·draw·sheen 정지 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-tag { animation: none; }
+  .hero-underline path { animation: none; stroke-dashoffset: 0; }
 }
