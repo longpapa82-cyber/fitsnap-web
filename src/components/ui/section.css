@@ -3,8 +3,9 @@
   /* sticky GNB(약 64px)가 앵커 이동 시 섹션 제목을 가리지 않도록 여백 보정. */
   scroll-margin-top: 72px;
 }
-.section--default { background: var(--color-background); }
-.section--tint { background: linear-gradient(180deg, var(--color-coral-tint), var(--color-background)); }
+/* default = 투명 → 전역 그라디언트 메시가 비침(통일감) */
+.section--default { background: transparent; }
+.section--tint { background: linear-gradient(180deg, rgba(255,237,231,0.7), transparent); }
 .section--dark {
   background: radial-gradient(120% 120% at 50% 0%, var(--color-coral), #E8542F);
   color: #fff;

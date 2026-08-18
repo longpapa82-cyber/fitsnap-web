@@ -2,24 +2,10 @@
   position: relative;
   overflow: hidden;
   padding: calc(var(--space-section) * 0.7) var(--space-gutter) var(--space-section);
-  /* 피팅룸 분위기: 다층 그라디언트 메시(코랄·복숭아·크림이 여러 지점서 섞임) */
+  /* 히어로 국소 강조 그라디언트(전역 메시 위에 더 진하게) — grain은 전역 body::before가 담당 */
   background:
-    radial-gradient(55% 45% at 82% 8%, rgba(255, 107, 74, 0.14), transparent 62%),
-    radial-gradient(45% 40% at 12% 82%, rgba(255, 148, 120, 0.12), transparent 60%),
-    radial-gradient(50% 50% at 50% 120%, rgba(212, 175, 55, 0.08), transparent 55%),
-    linear-gradient(160deg, #FFF6F1 0%, var(--color-background) 45%, #FBF6F0 100%);
-}
-/* 미세 grain — flat 탈피. SVG feTurbulence를 data-uri로, 아주 옅게. */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 140px 140px;
+    radial-gradient(55% 45% at 82% 8%, rgba(255, 107, 74, 0.12), transparent 62%),
+    radial-gradient(45% 40% at 12% 82%, rgba(255, 148, 120, 0.10), transparent 60%);
 }
 
 /* ── 분위기 레이어: 광원 + 떠다니는 옷 칩 ─────────────────────── */
