@@ -5,9 +5,9 @@ import { SITE } from '../constants/site.shared.mjs';
 import './hero.css';
 
 /**
- * Hero — "피팅룸 거울" 연출(D1). 좌: 카피+CTA / 우: 전신 거울(before/after 슬라이더).
- * 거울 프레임·바닥 반사·상단 광원·떠다니는 옷 칩으로 가상 피팅룸 현실감을 더한다.
- * 기존 BeforeAfter 슬라이더는 그대로, 시각 레이어만 감싼다.
+ * Hero — "피팅룸 거울" 연출(D1). 좌: 카피+CTA / 우: 전신 거울(before/after 크로스페이드).
+ * 거울 프레임·바닥 반사·상단 광원으로 가상 피팅룸 현실감을 더한다.
+ * BeforeAfter는 크로스페이드(자동 번갈아 표시)라 드래그 조작 없음 — 힌트도 그에 맞춤.
  */
 export function Hero() {
   return (
@@ -49,7 +49,7 @@ export function Hero() {
 
         <Reveal delay={200}>
           <div className="hero-visual">
-            {/* 전신 거울: 프레임 + 슬라이더 + 바닥 반사 */}
+            {/* 전신 거울: 프레임 + 크로스페이드 + 바닥 반사 */}
             <div className="hero-mirror">
               <div className="hero-mirror-frame">
                 <BeforeAfter
@@ -66,7 +66,7 @@ export function Hero() {
                 <img src="/assets/demo/hero-after.webp" alt="" draggable={false} />
               </div>
             </div>
-            <p className="hero-hint">← 드래그해서 변신을 확인하세요 →</p>
+            <p className="hero-hint">입기 전과 후를 번갈아 보여드려요</p>
           </div>
         </Reveal>
       </div>
