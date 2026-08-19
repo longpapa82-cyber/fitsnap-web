@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FitSnap web favicon / touch-icon source.
+  Fuller tee (~80% of canvas), no drop-shadow so it stays crisp at 16px.
+  Palette matches the app icon: off-white #FBF9F6, coral #E8794F.
+-->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F1EC"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EF8A61"/>
+      <stop offset="55%" stop-color="#E8794F"/>
+      <stop offset="100%" stop-color="#D96A41"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Tee scaled up and centered (viewBox uses the 1024-space path, scaled 0.5 + fit) -->
+  <g transform="translate(256 268) scale(0.44) translate(-512 -512)">
+    <path d="M512 300
+             C470 300 436 314 402 330
+             L214 402 Q196 410 202 430 L250 566 Q256 584 274 578
+             L360 548 L360 748 Q360 772 384 772 L640 772 Q664 772 664 748
+             L664 548 L750 578 Q768 584 774 566 L822 430 Q828 410 810 402
+             L622 330 C588 314 554 300 512 300 Z"
+          fill="url(#coral)"/>
+    <path d="M402 330 C430 386 470 416 512 416 C554 416 594 386 622 330
+             C596 356 560 372 512 372 C464 372 428 356 402 330 Z"
+          fill="#FFFFFF"/>
+    <path d="M430 348 C458 388 484 402 512 402 C540 402 566 388 594 348
+             C570 366 544 374 512 374 C480 374 454 366 430 348 Z"
+          fill="#D96A41" fill-opacity="0.28"/>
+  </g>
+</svg>

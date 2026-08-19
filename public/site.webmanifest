@@ -1,0 +1,14 @@
+{
+  "name": "FitSnap — AI 가상 착용",
+  "short_name": "FitSnap",
+  "description": "AI 가상 착용으로 옷을 입은 모습을 미리 확인하세요.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF9F6",
+  "theme_color": "#E8794F",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
