@@ -117,6 +117,13 @@
 }
 .os-thumb--on span { color: var(--color-coral); }
 
+/* 모바일: 5개 옷 썸네일을 한 줄에 균등 배치(4+1 줄바꿈 방지). */
+@media (max-width: 560px) {
+  .os-thumbs { flex-wrap: nowrap; gap: 0.4rem; }
+  .os-thumb { width: auto; flex: 1 1 0; min-width: 0; }
+  .os-thumb span { font-size: 0.62rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .os-img { transition: none; }
 }
