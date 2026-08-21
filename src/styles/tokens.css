@@ -38,3 +38,11 @@
   --duration: 500ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* 모바일: 섹션 상하 여백 축소 — clamp의 7vw 성분이 세로 스크롤에선 과도해
+   섹션 사이 빈 공간이 지나치게 커지던 문제(아이폰 스샷) 해소. */
+@media (max-width: 640px) {
+  :root {
+    --space-section: clamp(3rem, 2.2rem + 4vw, 4.5rem);
+  }
+}
