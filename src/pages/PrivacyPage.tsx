@@ -12,7 +12,10 @@ export function PrivacyPage() {
       <ul>
         <li><strong>계정 정보</strong>: 이메일, 로그인 제공자(Google/Apple).</li>
         <li><strong>프로필</strong>: 키, 몸무게, 체형 (가상 착용 정확도 향상 목적).</li>
-        <li><strong>이미지</strong>: 사용자가 업로드한 인물 사진, 옷 사진, 생성된 결과 이미지.</li>
+        <li>
+          <strong>이미지</strong>: 가상 착용에 사용하는 인물 사진·옷 사진은 <strong>서버에 저장하지 않고</strong>
+          AI 생성에만 즉시 사용됩니다. 저장되는 것은 생성된 결과 이미지뿐입니다.
+        </li>
         <li><strong>이용 데이터</strong>: 생성 기록, 크레딧/결제 내역, 오류 로그.</li>
       </ul>
 
@@ -26,8 +29,9 @@ export function PrivacyPage() {
       <h2>3. 제3자 제공 / 처리위탁</h2>
       <ul>
         <li>
-          <strong>AI 처리</strong>: 업로드 이미지는 가상 착용 생성을 위해 AI 이미지 생성
-          제공자(Google Gemini)로 전송·처리됩니다. 처리 후 결과 이미지만 저장됩니다.
+          <strong>AI 처리</strong>: 인물·옷 사진은 가상 착용 생성을 위해 AI 이미지 생성
+          제공자(Google Gemini)로 전송·처리되며, 처리 후 서버에 저장되지 않습니다.
+          결과 이미지만 저장됩니다.
         </li>
         <li><strong>인프라</strong>: Supabase(데이터 저장/인증), 앱스토어(결제), Google AdMob(광고).</li>
         <li>위 외 목적으로 개인정보를 판매하지 않습니다.</li>
@@ -35,7 +39,7 @@ export function PrivacyPage() {
 
       <h2>4. 보관 및 삭제</h2>
       <ul>
-        <li><strong>사진 자동삭제 옵션</strong>: 설정에서 켜면 결과 생성 직후 원본 사진을 삭제합니다.</li>
+        <li><strong>원본 사진 미저장</strong>: 인물·옷 사진은 서버에 저장하지 않으며, AI 생성 직후 폐기됩니다.</li>
         <li>
           <strong>계정 삭제</strong>: 설정 → 계정 삭제 시 계정·사진·생성물·결제기록이 영구
           삭제됩니다(되돌릴 수 없음). <a href="#account-deletion">계정·데이터 삭제 방법 안내</a>.
@@ -57,7 +61,7 @@ export function PrivacyPage() {
 
       <h2>7. 보안</h2>
       <ul>
-        <li>전송 구간 HTTPS, 저장 이미지는 비공개 버킷 + 서명 URL(만료).</li>
+        <li>전송 구간 HTTPS, 저장되는 결과 이미지는 비공개 버킷 + 서명 URL(만료).</li>
         <li>금전/크레딧 로직은 서버(원장 기반, 멱등)로만 처리.</li>
       </ul>
     </LegalPage>
