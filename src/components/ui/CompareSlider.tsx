@@ -36,8 +36,9 @@ export function CompareSlider({
   const stageRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(initial); // 리렌더 없이 현재값 추적(키보드/드래그 공용)
   const [pos, setPos] = useState(initial); // aria-valuenow 표시용(가끔 갱신)
-  // 첫 조작 시 nudge 힌트 종료. reduced-motion이면 처음부터 힌트 생략.
-  const [hinted, setHinted] = useState(reduced);
+  // 사용자가 한 번이라도 조작하면 자동 스윕 영구 중단(수동 모드로 전환).
+  const interacted = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
   // 경계 위치 반영: DOM CSS 변수 직접 조작(리렌더 회피) + aria용 state 동기화.
   const apply = useCallback((next: number) => {
@@ -51,6 +52,68 @@ export function CompareSlider({
     apply(initial);
   }, [initial, apply]);
 
+  // 사용자 조작 시작: 자동 스윕 중단(rAF 취소) + 이후 스윕 재개 안 함.
+  const stopAuto = useCallback(() => {
+    interacted.current = true;
+    if (rafRef.current != null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  }, []);
+
+  // 진입 시 자동 스윕 — 경계선이 좌↔우로 왕복하며 "밀면 옷이 바뀐다"를 시연.
+  // 뷰포트 진입(IntersectionObserver) 시 1회 시작. reduced-motion·사용자조작 시 생략/중단.
+  useEffect(() => {
+    if (reduced) return;
+    const el = stageRef.current;
+    if (!el) return;
+
+    let started = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting || started || interacted.current) return;
+        started = true;
+        io.disconnect();
+
+        // 이징 왕복: initial → 22% → 82% → initial. 총 ~3.4s.
+        const KEYS = [
+          { t: 0, v: initial },
+          { t: 900, v: 22 },
+          { t: 2100, v: 82 },
+          { t: 3400, v: initial },
+        ];
+        const startTs = performance.now();
+        const ease = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2); // easeInOutQuad
+        const tick = (now: number) => {
+          if (interacted.current) return; // 도중 조작 시 중단
+          const elapsed = now - startTs;
+          // 현재 구간 찾기
+          let seg = KEYS.length - 1;
+          for (let i = 0; i < KEYS.length - 1; i++) {
+            if (elapsed < KEYS[i + 1].t) { seg = i; break; }
+          }
+          if (elapsed >= KEYS[KEYS.length - 1].t) {
+            apply(initial);
+            rafRef.current = null;
+            return;
+          }
+          const a = KEYS[seg];
+          const b = KEYS[seg + 1];
+          const p = ease((elapsed - a.t) / (b.t - a.t));
+          apply(a.v + (b.v - a.v) * p);
+          rafRef.current = requestAnimationFrame(tick);
+        };
+        rafRef.current = requestAnimationFrame(tick);
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [reduced, initial, apply]);
+
   // 포인터 x → 경계 %(마우스·터치 공용, pointer capture로 스테이지 밖 드래그도 추적).
   const fromClientX = useCallback((clientX: number) => {
     const el = stageRef.current;
@@ -62,7 +125,7 @@ export function CompareSlider({
   const dragging = useRef(false);
   const onPointerDown = (e: React.PointerEvent) => {
     dragging.current = true;
-    if (!hinted) setHinted(true);
+    stopAuto();
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     apply(fromClientX(e.clientX));
   };
@@ -84,14 +147,14 @@ export function CompareSlider({
     else handled = false;
     if (handled) {
       e.preventDefault();
-      if (!hinted) setHinted(true);
+      stopAuto();
     }
   };
 
   return (
     <div
       ref={stageRef}
-      className={`cs-stage${hinted ? '' : ' cs-hint'}`}
+      className="cs-stage"
       style={{ ['--pos' as string]: `${initial}%` }}
       aria-label="변경 전후 비교 슬라이더"
     >

@@ -86,14 +86,5 @@
   cursor: ew-resize;
 }
 
-/* 첫 방문 nudge — 조작 전까지 그립이 좌우로 살짝 흔들려 조작 가능함을 암시. */
-@media (prefers-reduced-motion: no-preference) {
-  .cs-stage.cs-hint .cs-handle {
-    animation: csNudge 2.2s ease-in-out 0.6s 2;
-  }
-}
-@keyframes csNudge {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-12px); }
-  60% { transform: translateX(12px); }
-}
+/* 진입 자동 스윕은 JS(rAF)가 --pos를 직접 애니메이트하므로 CSS keyframe 불필요.
+   사용자가 잡으면 즉시 수동 전환(stopAuto). */
