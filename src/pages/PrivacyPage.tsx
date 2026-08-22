@@ -5,9 +5,9 @@ import { LegalPage } from './LegalPage';
  * ⚠️ 정정: 원문의 "FASHN/Kling"은 실제 확정 엔진(Google Gemini)과 불일치 →
  *    실제 데이터 흐름에 맞춰 Google로 수정(투명성 원칙·심사 정확성).
  */
-export function PrivacyPage() {
+export function PrivacyPage({ showChrome = true }: { showChrome?: boolean }) {
   return (
-    <LegalPage title="개인정보처리방침">
+    <LegalPage title="개인정보처리방침" showChrome={showChrome}>
       <h2>1. 수집하는 정보</h2>
       <ul>
         <li><strong>계정 정보</strong>: 이메일, 로그인 제공자(Google/Apple).</li>

@@ -3,6 +3,10 @@
 /* GNB(<Nav/>)가 sticky라 레이아웃 공간을 차지 → 본문은 그 아래에서 시작. */
 .legal-main { max-width: 760px; margin: 0 auto; padding: 1.5rem var(--space-gutter) 5rem; }
 
+/* 임베드(앱 인앱 브라우저) — GNB 없이 바로 본문. 앱 브라우저 자체 헤더가 있으므로
+   상단 여백만 살짝 확보하고 나머지는 동일. */
+.legal--embed .legal-main { padding-top: 2rem; }
+
 .legal-crumb { font-size: 0.9rem; color: var(--color-on-surface-variant); margin-bottom: 1.5rem; }
 .legal-crumb a:hover { color: var(--color-coral); }
 

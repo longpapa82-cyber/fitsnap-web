@@ -4,9 +4,9 @@ import { SITE } from '../constants/site.shared.mjs';
 /**
  * 이용약관 — docs/legal/content-policy.md(금지행위·집행) + 표준 서비스 약관 골격 통합.
  */
-export function TermsPage() {
+export function TermsPage({ showChrome = true }: { showChrome?: boolean }) {
   return (
-    <LegalPage title="이용약관">
+    <LegalPage title="이용약관" showChrome={showChrome}>
       <h2>1. 서비스 개요</h2>
       <p>
         {SITE.name}은(는) 사용자가 업로드한 인물 사진과 옷 사진을 바탕으로 AI가 가상 착용 이미지를

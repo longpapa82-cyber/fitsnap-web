@@ -5,9 +5,9 @@ import { SITE, COMPANY } from '../constants/site.shared.mjs';
  * 계정·데이터 삭제 안내 — 스토어 필수 페이지(앱 밖에서도 삭제 경로 고지).
  * 앱 delete-account Edge Function 연계. iOS/Android 삭제 경로 명시.
  */
-export function AccountDeletionPage() {
+export function AccountDeletionPage({ showChrome = true }: { showChrome?: boolean }) {
   return (
-    <LegalPage title="계정·데이터 삭제">
+    <LegalPage title="계정·데이터 삭제" showChrome={showChrome}>
       <p>
         {SITE.name}은(는) 사용자가 언제든 계정과 관련 데이터를 삭제할 수 있도록 지원합니다.
         삭제는 되돌릴 수 없으며, 아래 데이터가 영구 삭제됩니다.
