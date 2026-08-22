@@ -145,23 +145,6 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 30%);
   mix-blend-mode: screen;
 }
-/* 거울 아래 바닥 반사 — 살짝 띄우고 페이드 */
-.hero-reflection {
-  margin: 10px auto 0;
-  width: 82%;
-  height: 80px;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 78%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 78%);
-  opacity: 0.4;
-}
-.hero-reflection img {
-  width: 100%;
-  margin-top: -8%;
-  transform: scaleY(-1);
-  filter: blur(1.5px);
-}
-
 .hero-hint {
   text-align: center;
   font-size: 0.85rem;
@@ -178,8 +161,6 @@
   .hero-tag--1, .hero-tag--3 { display: none; } /* 좁은 화면선 칩 절반만 */
   .hero-tag--2 { top: 4%; right: 4%; }
   .hero-tag--4 { top: 8%; left: 4%; right: auto; }
-  /* 바닥 반사는 세로 공간만 차지하고 hint를 멀리 밀어냄 → 모바일선 숨김. */
-  .hero-reflection { display: none; }
   /* hint를 거울 바로 아래로 붙여 "떠 있는" 느낌 제거. */
   .hero-hint { margin-top: 0; }
 }

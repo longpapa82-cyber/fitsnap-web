@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Section } from '../components/ui/Section';
-import { BeforeAfter } from '../components/ui/BeforeAfter';
+import { CompareSlider } from '../components/ui/CompareSlider';
 import { Icon, type IconName } from '../components/ui/Icon';
 import './features.css';
 
@@ -59,9 +59,9 @@ export function Features() {
                     <li>구매 전 어울림을 미리 확인</li>
                   </ul>
                 </div>
-                {/* 우측 미리보기: before/after 크로스페이드(정렬 불필요) */}
+                {/* 우측 미리보기: before/after 드래그 슬라이더(정렬된 inpaint 쌍) */}
                 <div className="feat-preview">
-                  <BeforeAfter
+                  <CompareSlider
                     beforeSrc="/assets/demo/features-before.webp"
                     afterSrc="/assets/demo/features-after.webp"
                     beforeAlt="원본"

@@ -1,13 +1,14 @@
-import { BeforeAfter } from '../components/ui/BeforeAfter';
+import { CompareSlider } from '../components/ui/CompareSlider';
 import { StoreCTA } from '../components/ui/StoreCTA';
 import { Reveal } from '../components/ui/Reveal';
 import { SITE } from '../constants/site.shared.mjs';
 import './hero.css';
 
 /**
- * Hero — "피팅룸 거울" 연출(D1). 좌: 카피+CTA / 우: 전신 거울(before/after 크로스페이드).
- * 거울 프레임·바닥 반사·상단 광원으로 가상 피팅룸 현실감을 더한다.
- * BeforeAfter는 크로스페이드(자동 번갈아 표시)라 드래그 조작 없음 — 힌트도 그에 맞춤.
+ * Hero — "피팅룸 거울" 연출. 좌: 카피+CTA / 우: 전신 거울(before/after 드래그 슬라이더).
+ * 거울 프레임·상단 광원으로 가상 피팅룸 현실감을 더한다.
+ * CompareSlider는 핸들을 좌우로 밀어 전후를 비교(정렬된 inpaint 쌍이라 경계가 맞물림).
+ * 바닥 반사는 제거 — 슬라이더 경계가 움직이면 "반쯤 before인데 반사는 after" 모순이 생김(앱과 통일).
  */
 export function Hero() {
   return (
@@ -49,24 +50,20 @@ export function Hero() {
 
         <Reveal delay={200}>
           <div className="hero-visual">
-            {/* 전신 거울: 프레임 + 크로스페이드 + 바닥 반사 */}
+            {/* 전신 거울: 프레임 + 드래그 슬라이더 */}
             <div className="hero-mirror">
               <div className="hero-mirror-frame">
-                <BeforeAfter
+                <CompareSlider
                   beforeSrc="/assets/demo/hero-before.webp"
                   afterSrc="/assets/demo/hero-after.webp"
-                  beforeAlt="옷을 입기 전 모델 사진"
-                  afterAlt="AI 가상 착용 결과"
+                  beforeAlt="옷을 입기 전"
+                  afterAlt="AI 가상 착용"
                 />
                 {/* 거울 상단 광택 */}
                 <span className="hero-mirror-sheen" aria-hidden />
               </div>
-              {/* 거울 아래 바닥 반사 */}
-              <div className="hero-reflection" aria-hidden>
-                <img src="/assets/demo/hero-after.webp" alt="" draggable={false} />
-              </div>
             </div>
-            <p className="hero-hint">입기 전과 후를 번갈아 보여드려요</p>
+            <p className="hero-hint">핸들을 좌우로 밀어 전후를 비교해 보세요</p>
           </div>
         </Reveal>
       </div>

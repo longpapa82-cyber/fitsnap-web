@@ -58,8 +58,9 @@
       rel="stylesheet"
     />
 
-    <!-- LCP 후보: 히어로 after 이미지 preload -->
+    <!-- LCP 후보: 히어로 슬라이더는 before/after 둘 다 즉시 필요 -->
     <link rel="preload" as="image" href="/assets/demo/hero-after.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/demo/hero-before.webp" fetchpriority="high" />
 
     <!-- 구조화 데이터: WebSite + Organization + MobileApplication -->
     <script type="application/ld+json">

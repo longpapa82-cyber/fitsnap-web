@@ -1,0 +1,99 @@
+.cs-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #F4F1EC;
+  user-select: none;
+  --pos: 50%;
+}
+
+.cs-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* before를 감싸 왼쪽 pos%만 노출. after는 그대로 깔려 오른쪽에 보임.
+   두 img가 동일 좌표계라 경계에서 픽셀이 정확히 맞물린다. */
+.cs-clip {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+/* 라벨 배지 — before-after.css와 톤 통일 */
+.cs-label {
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #fff;
+  pointer-events: none;
+  z-index: 3;
+}
+.cs-label--before { left: 1rem; background: rgba(42, 39, 36, 0.7); }
+.cs-label--after { right: 1rem; background: var(--color-coral); }
+
+/* 드래그 히트 영역: 스테이지 전체를 덮어 어디를 눌러도 경계 이동.
+   touch-action:none → 모바일 드래그 중 페이지 스크롤 방지. */
+.cs-drag {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+/* 핸들: 세로 라인 + 중앙 원형 그립. 경계(--pos)에 붙어 이동. */
+.cs-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(42, 39, 36, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-handle:focus-visible { outline: none; }
+.cs-handle:focus-visible .cs-grip {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 2px;
+}
+
+.cs-grip {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: #fff;
+  color: var(--color-coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(42, 39, 36, 0.28);
+  cursor: ew-resize;
+}
+
+/* 첫 방문 nudge — 조작 전까지 그립이 좌우로 살짝 흔들려 조작 가능함을 암시. */
+@media (prefers-reduced-motion: no-preference) {
+  .cs-stage.cs-hint .cs-handle {
+    animation: csNudge 2.2s ease-in-out 0.6s 2;
+  }
+}
+@keyframes csNudge {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-12px); }
+  60% { transform: translateX(12px); }
+}
